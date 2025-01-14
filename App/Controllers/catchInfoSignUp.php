@@ -1,5 +1,6 @@
 <?php
 require_once("AuthController.php");
+
  use App\Controllers\AuthController;
  
 session_start();
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    
     if (!empty($messages)) {
         $_SESSION['messagesRegisterErrors'] = $messages;
-        header('Location: ../views/Auth/register.php'); 
+        header('Location:../Views/Auth/signUp'); 
         exit;
     } else {
        
