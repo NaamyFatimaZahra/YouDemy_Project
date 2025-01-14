@@ -26,7 +26,7 @@
                 </div>
             </div>
         <div class="relative">
-        <img src="./assets/Images/home_page.png" alt="home section image">
+        <img src="<?php echo BASE_PATH;?>/Public/assets/Images/home_page.png" alt="home section image">
                    <div class="absolute top-4 right-12 bg-white p-2 rounded-lg shadow-lg flex  items-center gap-2">
                     <i class="fa-solid fa-calendar-days w-[3rem]  text-white bg-[#65DAFF] text-center py-3 rounded-md "></i>
                         <div class="flex  flex-col text-start ">
