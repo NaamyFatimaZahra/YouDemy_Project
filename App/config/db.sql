@@ -79,8 +79,8 @@ CREATE TABLE enrollment (
 -- Rôles
 INSERT INTO roles (name) VALUES
 ('admin'),
-('recruiter'),
-('candidate');
+('teacher'),
+('student');
 
 -- Utilisateurs
 -- Remarque : Les mots de passe sont hachés avec password_hash() en PHP

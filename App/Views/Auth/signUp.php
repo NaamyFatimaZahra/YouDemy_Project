@@ -31,12 +31,7 @@ include_once "../Layout/header.php";
                     <div>
                         <label for='username' class="block text-sm font-medium text-gray-700 mb-1">Full name</label>
                         <input id="username" name="username" type="text" placeholder="Enter your full name" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                        <input type="tel" name="phone" placeholder="Enter phone number" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
-                    </div>
-                    
+                    </div> 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                         <input type="email" name="email" placeholder="Enter email address" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
@@ -46,11 +41,15 @@ include_once "../Layout/header.php";
                         <input type="password" name="password" placeholder="Enter password" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                        <input type="password" name="password_copy" placeholder="Confirm password " class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
                         <select name="account_type" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] ">
-                          
-                            <option value="candidate" selected>Student</option>
-                            <option value="recruiter">Teacher</option>
+                            <option value="" selected>Select option</option>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
                         </select>
                     </div>
 
