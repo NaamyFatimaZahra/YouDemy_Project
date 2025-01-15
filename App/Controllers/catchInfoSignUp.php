@@ -18,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['username'])) {
         $messages[] = "Le nom d'utilisateur est obligatoire.";
     }
-    if (empty($_POST['email'])) {
+    if (empty($_POST['email']) || filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $messages[] = "L'email est obligatoire.";
     }
+    
     if (empty($_POST['phone'])) {
         $messages[] = "Le téléphone est obligatoire.";
     }
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
    
     if (!empty($messages)) {
-        $_SESSION['messagesRegisterErrors'] = $messages;
+        $_SESSION['messagesSignUpErrors'] = $messages;
         header('Location:../Views/Auth/signUp'); 
         exit;
     } else {
@@ -40,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $phone = $_POST['phone'];
         $password = $_POST['password'];
 
-        if ($accountType == "candidate") {
+        if ($accountType == "student") {
             $authController = new AuthController();
-            $authController->registerUser($username, $email, $phone, $password, 3);
-        } elseif ($accountType == "recruiter") {
+            $authController->signUpUser($username, $email, $phone, $password, 3);
+        } elseif ($accountType == "teacher") {
           
             $authController = new AuthController();
-            $authController->registerUser($username, $email, $phone, $password, 2);
+            $authController->signUpUser($username, $email, $phone, $password, 2);
         }
     }
 }

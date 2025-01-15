@@ -5,20 +5,20 @@ include_once "../Layout/header.php";
 ?>
 
 <?php if (isset($_SESSION['error'])): ?>
-         <div id="error-message" class="absolute right-2 top-2 z-8  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['error'] ?></div>
+         <div id="error-message" class="absolute right-2 top-6 z-8  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['error'] ?></div>
  <?php endif;
  unset($_SESSION['error']);?>
    <!-- gestion des erreur en js -->  
- <!-- <div id="message" class="absolute right-2 top-2 z-8 hidden mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"></div> -->
- <!-- gestion des erreur en php -->
-<?php if (isset($_SESSION['messagesRegisterErrors'])): ?>
-            <?php foreach ($_SESSION['messagesRegisterErrors'] as $message): ?>
-                <div class="mb-4 p-4 <?= strpos($message, 'succès') !== false ? 'bg-green-100 text-green-700 border border-green-300' : 'bg-red-100 text-red-700 border border-red-300' ?> rounded-md">
+ <!-- <div id="message" class="absolute right-6 top-16  hidden mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"></div> -->
+ <!-- gestion des erreur en php --> 
+<?php if (isset($_SESSION['messagesSignUpErrors'])): ?>
+            <?php foreach ($_SESSION['messagesSignUpErrors'] as $message): ?>
+                <div class="mb-4 p-4 rounded-md">
                     <?= htmlspecialchars($message); ?>
                 </div>
             <?php endforeach; ?>
           
-            <?php unset($_SESSION['messagesRegisterErrors']); ?>
+            <?php unset($_SESSION['messagesSignUpErrors']); ?>
         <?php endif; ?>
 
     <div class=" h-[120vh] w-[100%] flex items-center justify-center">
@@ -81,11 +81,11 @@ include_once "../Layout/header.php";
             const messageDiv = document.getElementById("message");
             if (!username || !email || !phone || !password || !accountType) {
                 messageDiv.innerHTML = "Tous les champs sont obligatoires !";
-                messageDiv.style.display = "block"; // Affiche le message
+                messageDiv.style.display = "block"; 
                 setTimeout(() => {
-                    messageDiv.style.display = "none"; // Masque le message après 2 secondes
-                }, 3000); // 2000 ms = 2 secondes
-                return false; // Empêche l'envoi du formulaire
+                    messageDiv.style.display = "none";
+                }, 3000); 
+                return false; 
             }
             return true;
         }
