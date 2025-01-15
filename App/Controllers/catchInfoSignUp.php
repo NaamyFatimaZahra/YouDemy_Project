@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($accountType !== "teacher" && $accountType !== "student") {
         $messages[] = "Type of account is invalide. can you select 'teacher' ou 'student'.";
     }
-
     
     if (empty($_POST['username'])) {
         $messages[] = "User name is obligatoire.";
