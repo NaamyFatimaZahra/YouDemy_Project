@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
             <!-- Logo -->
             <div>
                 <a href="../Public/index.php">
-                    <img class="w-[7rem] h-[3.5rem]" src="<?php echo BASE_PATH;?>/Public/assets/Images/logo_header.png" alt="logo youdemy">
+                    <img class="w-[4.9rem] h-[3rem]" src="<?php echo BASE_PATH;?>/Public/assets/Images/logo_header.png" alt="logo youdemy">
                 </a>
             </div>
             <div class="flex items-center justify-between gap-[7rem]">
@@ -32,7 +33,7 @@
                 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
-                    <a href="<?php echo BASE_PATH;?>/App/views/Auth/signUp.php" class="text-[#f97316] bg-[#fff] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Login</a>
+                    <a href="<?php echo BASE_PATH;?>/App/views/Auth/logIn.php" class="text-[#f97316] bg-[#fff] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Login</a>
                     <a href="<?php echo BASE_PATH;?>/App/views/Auth/signUp.php" class="text-[#fff] bg-[#f97316] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Sign Up</a>
                 </div>
             </div>
