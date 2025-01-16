@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($accountType == "student") {
             $authController = new AuthController();
-            
             $authController->signUpUser($username, $email, $password, 2);
         } elseif ($accountType == "teacher") {
             $authController = new AuthController();

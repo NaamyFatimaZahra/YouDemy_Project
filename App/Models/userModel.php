@@ -14,7 +14,7 @@ class UserModel {
     }
 
 
-    public function createUser($username, $email, $password, $accountType): void {       
+    public function createUser($username, $email, $password, $accountType) {       
             // Check if the user already exists by email or username
             $query = "SELECT COUNT(*) FROM Users WHERE email = :email OR `name` = :username";
             $stmt = $this->conn->prepare($query);
@@ -44,21 +44,8 @@ class UserModel {
             $stmt->bindParam(':accountType', $accountType);
 
             // Execute the query to insert the data into the database
-            $stmt->execute();
-            switch ($accountType) {
-                case 1: // Example: Admin
-                header("Location: ../views/admin/dashboard.php");
-                break;
-                case 2: // Example: Teacher
-                header("Location: ../views/Student/index.php");
-                break;
-                case 3: // Example: Student
-                    header("Location: ../views/Teacher/dashboard.php");
-                break;
-           
-        }
-        exit(); 
-            
+             return $stmt->execute();
+          
             }
 
            
@@ -72,50 +59,43 @@ class UserModel {
 
 
     public function findUser($email, $password) {
-        $query = "SELECT COUNT(*) FROM Users WHERE email = :email ";
-            $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            
-            // Check if the user exists
-            $existingUserCount = $stmt->fetchColumn();
-            
-            if ($existingUserCount == 0) {
-               
-                 $_SESSION['messagesLoginErrors'] = "No user found with this email.";
-                 
-           
-            }else{
-                 $query = "SELECT * FROM Users WHERE email = :email ";
-            $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
+            $query = "SELECT * FROM Users WHERE email = :email";
+            $all_row = $this->conn->prepare($query);
+            $all_row->bindParam(':email', $email);
+            $all_row->execute();
 
-            // Check if user exists
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+            // Get the row count
+            $existingUserCount = $all_row->rowCount();
+            $user = $all_row->fetch(PDO::FETCH_ASSOC);
+           
+
+            if ($existingUserCount == 0) {
+                 $_SESSION['messagesLoginErrors'] = "No user found with this email.";
+                 header('../Views/Auth/signUp.php');
+               exit();
+            }else{
+         
                 // Verify password if user exists
-                if (password_verify($password, $user['password'])) {
-                    //  session_start();
+        if (password_verify($password, $user['password'])) {
         
-             
-        switch ($user->getRole()->getTitle()) {
-            case "Administrateur":
-                header("Location: /admin/statistique.php");
+          
+         switch ($user['role_id']) {
+                case 1: // Example: Admin
+                header("Location: ../views/admin/dashboard.php");
                 break;
-            case "candidate":
-                header("Location: /candidate/index.php");
+                case 2: // Example: Teacher
+                header("Location: ../views/Student/index.php");
                 break;
-            case "recruiter":
-                header("Location: /recruiter/index.php");
+                case 3: // Example: Student
+                    header("Location: ../views/Teacher/dashboard.php");
                 break;
-            default:
-                throw new Exception("Unauthorized role.");
+           
         }
         exit(); 
                 } else{
+                
                      $_SESSION['messagesLoginErrors'] = "Incorrect password.";
-                      header("Location: ../views/Auth/login.php");
+                //      header("Location: ../views/Auth/login.php");
                     exit();
                 }
             

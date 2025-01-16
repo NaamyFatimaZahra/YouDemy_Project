@@ -57,7 +57,7 @@
                         </select>
                     </div>
 
-                    <input name="submit" type="submit" value="Continue" class="w-full bg-[#9592e9d6] text-white rounded-lg p-3 hover:bg-indigo-700"/>
+                    <input name="submit" type="submit" value="Submit" class="w-full bg-[#f97316] text-white rounded-lg p-3 hover:bg-indigo-700"/>
 
                     <div class="text-sm text-center">
                         <span class="text-gray-500">Already have an account? </span>
