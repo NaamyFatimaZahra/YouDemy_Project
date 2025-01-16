@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +9,13 @@
     <title>YOUDEMY</title>
 </head>
 <body class="w-[100%] text-[#595959]">
+    
     <header class=" w-[100%] h-[4rem] flex items-center absolute top-0 z-10 bg-[#fbebcc]">
         <nav class="mx-auto w-[80%]  flex items-center justify-between">
             <!-- Logo -->
             <div>
                 <a href="../Public/index.php">
-                    <img class="w-[7rem] h-[3.5rem]" src="<?php echo BASE_PATH;?>/Public/assets/Images/logo_header.png" alt="logo youdemy">
+                    <img class="w-[4.9rem] h-[3rem]" src="<?php echo BASE_PATH;?>/Public/assets/Images/logo_header.png" alt="logo youdemy">
                 </a>
             </div>
             <div class="flex items-center justify-between gap-[7rem]">

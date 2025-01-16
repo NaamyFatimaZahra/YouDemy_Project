@@ -2,7 +2,7 @@
 
           <div >
                 <a href="<?php echo BASE_PATH;?>/Public/index.php">
-                    <img class="w-[7rem] h-[3.5rem] " src="<?php echo BASE_PATH;?>/Public/assets/Images/logo_footer" alt="logo youdemy">
+                    <img class="w-[7rem] h-[3.5rem] " src="<?php echo BASE_PATH;?>/Public/assets/Images/logo_footer.png" alt="logo youdemy">
                 </a>
             </div>        
            

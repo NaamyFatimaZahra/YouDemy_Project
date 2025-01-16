@@ -1,13 +1,11 @@
 <?php
-require_once("AuthController.php");
-
+require_once '../../vendor/autoload.php';
  use App\Controllers\AuthController;
  
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $messages = []; 
-
     
     $accountType = $_POST["account_type"];
     if ($accountType !== "teacher" && $accountType !== "student") {
@@ -17,21 +15,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['username'])) {
         $messages[] = "User name is obligatoire.";
     }
-    if (empty($_POST['email']) || filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+  
+    if (empty($_POST['email']) ) {
         $messages[] = "Email is obligatory.";
+    }elseif (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)===false) {
+        $messages[] = "Email is not valid.";
     }
-    if (empty($_POST['password']) || empty($_POST['password_copy'])) {
+    
+    if (empty($_POST['password']) && empty($_POST['password_copy'])) {
         $messages[] = "Password is obligatory.";
-    }
-    if ($_POST['password_copy'] !== $_POST['password']) {
+    }elseif ($_POST['password_copy'] !== $_POST['password']) {
         $messages[] = "Password confirmation does not match.";
     }
 
-   
     if (!empty($messages)) {
         $_SESSION['messagesSignUpErrors'] = $messages;
-        header('Location:../Views/Auth/signUp'); 
-        exit;
+        header("Location: ../Views/Auth/signUp.php"); 
+        exit();
     } else {
        
         $username = $_POST['username'];
@@ -40,12 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($accountType == "student") {
             $authController = new AuthController();
+            
             $authController->signUpUser($username, $email, $password, 2);
         } elseif ($accountType == "teacher") {
-          
             $authController = new AuthController();
-            $authController->signUpUser($username, $email, $phone, $password, 3);
+            $authController->signUpUser($username, $email, $password, 3);
         }
-    }
+     }
 }
 ?>

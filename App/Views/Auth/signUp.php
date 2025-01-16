@@ -1,33 +1,37 @@
 
-<?php
- include_once "../../config/config.php";
-include_once "../Layout/header.php";
-?>
+    <?php 
+     include_once "../../config/config.php";
 
-<?php if (isset($_SESSION['error'])): ?>
-         <div id="error-message" class="absolute right-2 top-6 z-8  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['error'] ?></div>
+    include_once "../Layout/header.php";?>
+
+    <?php 
+    session_start();
+    if (isset($_SESSION['error'])): ?>
+         <div id="error-message" class="absolute right-2 top-16 z-14  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['error'] ?></div>
  <?php endif;
  unset($_SESSION['error']);?>
    <!-- gestion des erreur en js -->  
  <!-- <div id="message" class="absolute right-6 top-16  hidden mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"></div> -->
  <!-- gestion des erreur en php --> 
 <?php if (isset($_SESSION['messagesSignUpErrors'])): ?>
-            <?php foreach ($_SESSION['messagesSignUpErrors'] as $message): ?>
-                <div class="mb-4 p-4 rounded-md">
+           <div class="absolute top-16 z-20 ">
+             <?php foreach ($_SESSION['messagesSignUpErrors'] as $message): ?>
+                <div class="mb-4 mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300">
                     <?= htmlspecialchars($message); ?>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; ?> 
+           </div>
           
             <?php unset($_SESSION['messagesSignUpErrors']); ?>
         <?php endif; ?>
 
-    <div class=" h-[120vh] w-[100%] flex items-center justify-center">
+    <section  class=" h-[120vh] w-[100%] flex items-center justify-center">
      
         <!-- Right Section -->
-        <div class="w-[30%] flex items-center justify-center p-8 bg-white border-0 shadow-lg sm:rounded-3xl">
+        <div class="w-[30%] flex items-center justify-center p-8 bg-white border-0  shadow-2xl sm:rounded-3xl">
             <div class=" max-w-md">
                 <!-- Sign Up Form -->
-                <form name="userForm" class="space-y-4" action="../../controllers/catchInfoSignUp.php" method="POST" onsubmit="return validateForm()">
+                <form name="userForm" class="space-y-4" action="../../Controllers/catchInfoSignUp.php" method="POST" onsubmit="return validateForm()">
                     <div>
                         <label for='username' class="block text-sm font-medium text-gray-700 mb-1">Full name</label>
                         <input id="username" name="username" type="text" placeholder="Enter your full name" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
@@ -68,20 +72,20 @@ include_once "../Layout/header.php";
                 </form>
             </div>
         </div>
-    </div>
+            </section>
      <script>
         function validateForm() {
             const username = document.forms["userForm"]["username"].value;
             const email = document.forms["userForm"]["email"].value;
-            const phone = document.forms["userForm"]["phone"].value;
-            const password = document.forms["userForm"]["password"].value;
+            const password = document.forms["userForm"]["password_copy"].value;
+            const password_copy = document.forms["userForm"]["password"].value;
             const accountType = document.forms["userForm"]["account_type"].value;
 
             const messageDiv = document.getElementById("message");
-            if (!username || !email || !phone || !password || !accountType) {
+            if (!username || !email || !password || !password_copy || !accountType) {
                 messageDiv.innerHTML = "Tous les champs sont obligatoires !";
                 messageDiv.style.display = "block"; 
-                setTimeout(() => {
+                setTimeout(() => { 
                     messageDiv.style.display = "none";
                 }, 3000); 
                 return false; 
@@ -92,5 +96,6 @@ include_once "../Layout/header.php";
             document.getElementById('error-message').style.display = 'none';
         }, 4000);
     </script>
-<?php
-include_once "../Layout/footer.php";?>
+<?php include_once "../Layout/footer.php";?>
+
+

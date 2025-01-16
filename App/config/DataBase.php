@@ -1,8 +1,10 @@
 <?php
-
-require_once __DIR__ . '/vendor/autoload.php';
+namespace App\config;
 
 use Dotenv\Dotenv;
+
+use PDO;
+use PDOException;
 
 class Database
 {
@@ -10,20 +12,20 @@ class Database
 
     public static function connect()
     {
-        if (self::$pdo === null) {
-            $dotenv = Dotenv::createImmutable(__DIR__);
+        if (self::$conn === null) {
+            $dotenv = Dotenv::createImmutable(__DIR__. '/../../');
             $dotenv->load();
-
-            $dsn = "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=" . $_ENV['DB_CHARSET'];
+             $dsn = "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] ;
             try {
-                self::$pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
-                self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
+                self::$conn = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
+                               
             } catch (PDOException $e) {
-                header('Location',"../Views/");
+                header('Location',"../Views/Errors/500.php");
+                exit();
             }
         }
 
         return self::$conn;
     }
 }
+

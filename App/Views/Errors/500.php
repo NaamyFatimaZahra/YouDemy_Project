@@ -4,7 +4,7 @@
 include_once "../../config/config.php";
 include_once "../Layout/header.php";?>
  <section class=" h-[100vh] flex flex-col justify-center items-center">
-    <h1 class="mb-4 text-6xl font-semibold text-[#f97316]">404</h1>
+    <h1 class="mb-4 text-6xl font-semibold text-[#f97316]">500</h1>
     <p class="mb-4 text-lg text-gray-600">Oops! Looks like you're lost.</p>
     <div class="animate-bounce">
       <svg class="mx-auto h-16 w-16 text-[#f97316]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
