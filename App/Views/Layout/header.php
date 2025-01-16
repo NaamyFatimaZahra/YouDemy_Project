@@ -9,7 +9,6 @@
     <title>YOUDEMY</title>
 </head>
 <body class="w-[100%] text-[#595959]">
-    
     <header class=" w-[100%] h-[4rem] flex items-center absolute top-0 z-10 bg-[#fbebcc]">
         <nav class="mx-auto w-[80%]  flex items-center justify-between">
             <!-- Logo -->

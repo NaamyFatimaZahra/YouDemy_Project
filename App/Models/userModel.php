@@ -77,7 +77,11 @@ class UserModel {
          
                 // Verify password if user exists
         if (password_verify($password, $user['password'])) {
-        
+            
+                        $_SESSION['user'] = [
+                    'id' => $user['id'],
+                    'role_id' => $user['role_id']
+                ];
           
          switch ($user['role_id']) {
                 case 1: // Example: Admin

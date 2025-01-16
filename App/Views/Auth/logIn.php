@@ -1,14 +1,17 @@
 <?php
   include_once "../../config/config.php";
 include_once '../Layout/header.php';?>
-<section class=" w-[100%] h-[100vh] py-6 flex flex-col justify-center items-center sm:py-12">
+	<div id="messagesLoginErrors" class=" right-2 top-8 z-14  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> dnsnkjnd</div>
+     <section class=" w-[100%] h-[100vh] py-6 flex flex-col justify-center items-center sm:py-12">
+	  
+
 	<div class=" w-[60%]  relative py-3 sm:max-w-xl sm:mx-auto">
 		<div
 			class="absolute inset-0 bg-gradient-to-r from-[#fbebcc] to-[#f97316] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
 		</div>
 		<div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 			<div class="max-w-md mx-auto">
-				<div>
+				<div> 
 					<h1 class="text-2xl font-semibold">Login Form with Floating Labels</h1>
 				</div>
 				<form action="../../Controllers/catchInfoLogIn.php" method="POST" class="divide-y divide-gray-200">
@@ -28,4 +31,9 @@ include_once '../Layout/header.php';?>
 		</div>
 	</div>
 </section>
+<script>  
+ setTimeout(function() {
+            document.getElementById('messagesLoginErrors').style.display = 'none';
+        }, 4000);
+		</script>
 <?php include_once '../Layout/footer.php';?>
