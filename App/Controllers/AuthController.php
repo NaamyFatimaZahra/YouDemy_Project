@@ -8,12 +8,13 @@ class AuthController{
          
         if($createAccount->createUser($username, $email, $password, $role)){
           $this->logInUser($email,$password);
+        }else{
+            echo'prob';
         }
     }
      public function logInUser($email, $password){
         $loginAccount=new UserModel();
         $loginAccount->findUser($email,$password);
-        
     }
 }
 

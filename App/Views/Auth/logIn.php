@@ -1,10 +1,14 @@
-<?php
+ <?php
   include_once "../../config/config.php";
-include_once '../Layout/header.php';?>
-	<div id="messagesLoginErrors" class=" right-2 top-8 z-14  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> dnsnkjnd</div>
+include_once '../Layout/header.php';
+?> 
      <section class=" w-[100%] h-[100vh] py-6 flex flex-col justify-center items-center sm:py-12">
-	  
-
+		
+<?php
+if (isset($_SESSION['messagesLoginErrors'])): ?>
+		 <div id="messagesLoginErrors" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['messagesLoginErrors'] ?></div>
+<?php endif;
+ unset($_SESSION['messagesLoginErrors']);?>
 	<div class=" w-[60%]  relative py-3 sm:max-w-xl sm:mx-auto">
 		<div
 			class="absolute inset-0 bg-gradient-to-r from-[#fbebcc] to-[#f97316] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">

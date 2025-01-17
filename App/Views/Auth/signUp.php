@@ -5,7 +5,6 @@
     include_once "../Layout/header.php";?>
 
     <?php 
-    session_start();
     if (isset($_SESSION['error'])): ?>
          <div id="error-message" class="absolute right-2 top-16 z-14  mt-4 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['error'] ?></div>
  <?php endif;
