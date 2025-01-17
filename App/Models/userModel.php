@@ -3,11 +3,11 @@ namespace App\Models;
 include_once "../../vendor/autoload.php";
 use App\config\DataBase;
 use PDO;
-
+session_start();
 
 class UserModel {
     private $conn;
-    public function __construct() {
+    public function __construct(){
             // Attempt to create the database connection
             $db = new Database();
             $this->conn = $db->connect();
@@ -59,7 +59,7 @@ class UserModel {
 
 
     public function findUser($email, $password) {
-            $query = "SELECT * FROM Users WHERE email = :email";
+            $query = "SELECT * FROM Users WHERE email=:email";
             $all_row = $this->conn->prepare($query);
             $all_row->bindParam(':email', $email);
             $all_row->execute();
@@ -70,36 +70,34 @@ class UserModel {
            
 
             if ($existingUserCount == 0) {
-                 $_SESSION['messagesLoginErrors'] = "No user found with this email.";
-                 header('../Views/Auth/signUp.php');
+             
+                 $_SESSION['messagesLoginErrors'] = "No user found with this email or password .";
+                 header('Location:../Views/Auth/login.php');
                exit();
             }else{
          
+               
                 // Verify password if user exists
         if (password_verify($password, $user['password'])) {
-            
                         $_SESSION['user'] = [
                     'id' => $user['id'],
-                    'role_id' => $user['role_id']
-                ];
-          
+                    'role_id' => $user['role_id']];
          switch ($user['role_id']) {
                 case 1: // Example: Admin
                 header("Location: ../views/admin/dashboard.php");
                 break;
-                case 2: // Example: Teacher
+                case 2: // Example: Student
                 header("Location: ../views/Student/index.php");
                 break;
-                case 3: // Example: Student
+                case 3: // Example: Teacher
                     header("Location: ../views/Teacher/dashboard.php");
                 break;
            
         }
         exit(); 
                 } else{
-                
                      $_SESSION['messagesLoginErrors'] = "Incorrect password.";
-                //      header("Location: ../views/Auth/login.php");
+                    header("Location: ../views/Auth/login.php");
                     exit();
                 }
             

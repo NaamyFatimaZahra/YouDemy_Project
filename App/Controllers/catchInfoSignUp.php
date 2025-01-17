@@ -2,7 +2,7 @@
 require_once '../../vendor/autoload.php';
  use App\Controllers\AuthController;
  
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $messages = []; 
