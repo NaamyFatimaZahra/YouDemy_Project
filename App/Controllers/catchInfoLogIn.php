@@ -2,7 +2,7 @@
 require_once '../../vendor/autoload.php';
  use App\Controllers\AuthController;
  
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $messages = []; 
@@ -18,15 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (!empty($messages)) {
-        $_SESSION['messagesSignUpErrors'] = $messages;
+       
+        $_SESSION['messagesLoginErrors'] = $messages;
         header("Location: ../Views/Auth/logIn.php"); 
         exit();
     } else {
-       
-       
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
+        
+            $email = $_POST['email'];
+            $password = $_POST['password'];
             $authController = new AuthController();
             $authController->logInUser($email, $password);
       

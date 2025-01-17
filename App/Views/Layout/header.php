@@ -20,22 +20,59 @@
             <div class="flex items-center justify-between gap-[7rem]">
                 <!-- Navigation Links -->
                 <ul class="hidden md:flex items-center font-semibold space-x-[4rem] capitalize text-[#f97316]">
+                
                     <li>
                         <a href="<?php echo BASE_PATH;?>/Public/index.php"lass="hover:text-[#d97706] transition">Home</a>
                     </li>
+                
+                <?php if(isset($_SESSION['user'])):?>
+                      <?php if( $_SESSION['user']['role_id'] == '1'):?>
+                     <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
+                    </li>               
+                    <?php elseif( $_SESSION['user']['role_id'] == '3'):?>
+                     <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
+                    </li>
+                 <?php endif?>   
+                 <?php endif?> 
+
+
+                
+
+
+
+                      <?php if(isset($_SESSION['user'])):?>
+                         <?php if( $_SESSION['user']['role_id'] == '1'):?>
+                     <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/dashboard.php"class="hover:text-[#d97706] transition">tags</a>
+                    </li>               
+                    <?php elseif(  $_SESSION['user']['role_id'] == '3'):?>
+                     <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/dashboard.php"class="hover:text-[#d97706] transition">My courses</a>
+                    </li>
+                 <?php endif?>
+                 <?php endif?> 
+                 
                     <li>
-                        <a href="<?php echo BASE_PATH;?>/Public/index.php" class="hover:text-[#d97706] transition">Courses</a>
+                        <a href="<?php echo BASE_PATH;?>/Public/index.php" class="hover:text-[#d97706] transition">All Courses</a>
                     </li>
                     <li>
                         <a href="<?php echo BASE_PATH;?>/Public/index.php" class="hover:text-[#d97706] transition">About Us</a>
                     </li>
                 </ul>
-                
+               
                 <!-- Auth Buttons -->
-                <div class="flex items-center space-x-4">
+              <?php if(isset($_SESSION['user'])):?>
+                <a href="<?php echo BASE_PATH;?>/App/Controllers/logout.php" class="text-[#f97316] "><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+               <?php elseif(!isset($_SESSION['user'])):?>
+          <div class="flex items-center space-x-4">
                     <a href="<?php echo BASE_PATH;?>/App/views/Auth/logIn.php" class="text-[#f97316] bg-[#fff] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Login</a>
                     <a href="<?php echo BASE_PATH;?>/App/views/Auth/signUp.php" class="text-[#fff] bg-[#f97316] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Sign Up</a>
                 </div>
+                 <?php endif;?>
+
+                
             </div>
         </nav>
     </header>
