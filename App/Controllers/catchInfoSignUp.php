@@ -39,8 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $_POST['password'];
 
         if ($accountType == "student") {
-            $authController = new AuthController();
-            $authController->signUpUser($username, $email, $password, 2);
+            
+            // $authController = new AuthController();
+            // $authController->signUpUser($username, $email, $password, 2);
         } elseif ($accountType == "teacher") {
             $authController = new AuthController();
             $authController->signUpUser($username, $email, $password, 3);

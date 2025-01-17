@@ -34,11 +34,8 @@
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
                     </li>
-                 <?php endif?>   
+                 <?php endif ?>   
                  <?php endif?> 
-
-
-                
 
 
 

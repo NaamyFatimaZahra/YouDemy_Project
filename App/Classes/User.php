@@ -39,6 +39,14 @@ abstract class User {
     public function setPassword(string $password): void {
         $this->password = $password;
     }
+ 
+     public function login(): void {
+        
+    }
+     public function signUp(): void {
+        
+    }
+    
 }
 
 ?>

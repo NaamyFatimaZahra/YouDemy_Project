@@ -81,7 +81,8 @@ class UserModel {
         if (password_verify($password, $user['password'])) {
                         $_SESSION['user'] = [
                     'id' => $user['id'],
-                    'role_id' => $user['role_id']];
+                    'role_id' => $user['role_id'],
+                    'name' => $user['name']];
          switch ($user['role_id']) {
                 case 1: // Example: Admin
                 header("Location: ../views/admin/dashboard.php");
