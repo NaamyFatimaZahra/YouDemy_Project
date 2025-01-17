@@ -6,6 +6,8 @@ include_once '../Layout/header.php';
 if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != '1') {
     header('Location: ../Auth/logIn.php');
     exit();
+}else{
+
 }
 
 ?>
@@ -14,8 +16,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != '1') {
     <div class="w-full">
         <section class="bg-white">
             <h1 class="text-4xl font-bold mb-10 text-yellow-700">
-WELCOME,<?php echo htmlspecialchars($user['name']);?>!          
- </h1>
+            WELCOME,<?php  echo $_SESSION['user']['name'];?>!          
+            </h1>
             <div class="flex items-center justify-between">
                 <div class="flex items-stretch">
                     <div class="text-gray-400 text-xs">
