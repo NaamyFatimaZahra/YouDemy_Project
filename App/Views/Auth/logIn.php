@@ -1,7 +1,13 @@
  <?php
   include_once "../../config/config.php";
 include_once '../Layout/header.php';
+
+if (isset($_SESSION['user']) ) {
+    header("Location:".BASE_PATH. "/Public/index.php");
+    exit();
+}
 ?> 
+
      <section class=" w-[100%] h-[100vh] py-6 flex flex-col justify-center items-center sm:py-12">
 		
 <?php
@@ -40,4 +46,5 @@ if (isset($_SESSION['messagesLoginErrors'])): ?>
             document.getElementById('messagesLoginErrors').style.display = 'none';
         }, 4000);
 		</script>
+	
 <?php include_once '../Layout/footer.php';?>

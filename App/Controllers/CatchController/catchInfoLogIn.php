@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                exit();
             }else{
          if ( $userRow['role_id']===1) { 
-           
             $userStudent=new Admin($userRow['id'],$userRow['name'], $email, $password,'admin');
             $authController = new AuthController($userStudent);
             $authController->logInUser();

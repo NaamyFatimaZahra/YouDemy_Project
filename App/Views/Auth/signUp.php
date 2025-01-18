@@ -1,8 +1,13 @@
 
     <?php 
      include_once "../../config/config.php";
-
-    include_once "../Layout/header.php";?>
+    include_once "../Layout/header.php";
+    
+    if (isset($_SESSION['user']) ) {
+    header("Location:".BASE_PATH. "/Public/index.php");
+    exit();
+}
+    ?>
 
     <?php 
     if (isset($_SESSION['error'])): ?>
