@@ -28,11 +28,11 @@
                 <?php if(isset($_SESSION['user'])):?>
                       <?php if( $_SESSION['user']['role_id'] == '1'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/Dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
                     </li>               
                     <?php elseif( $_SESSION['user']['role_id'] == '3'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/Dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
                     </li>
                  <?php endif ?>   
                  <?php endif?> 
@@ -42,11 +42,11 @@
                       <?php if(isset($_SESSION['user'])):?>
                          <?php if( $_SESSION['user']['role_id'] == '1'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/dashboard.php"class="hover:text-[#d97706] transition">tags</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/TagsPage.php"class="hover:text-[#d97706] transition">tags</a>
                     </li>               
                     <?php elseif(  $_SESSION['user']['role_id'] == '3'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/dashboard.php"class="hover:text-[#d97706] transition">My courses</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/MyCourses.php"class="hover:text-[#d97706] transition">My courses</a>
                     </li>
                  <?php endif?>
                  <?php endif?> 
@@ -61,7 +61,7 @@
                
                 <!-- Auth Buttons -->
               <?php if(isset($_SESSION['user'])):?>
-                <a href="<?php echo BASE_PATH;?>/App/Controllers/logout.php" class="text-[#f97316] "><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <a href="<?php echo BASE_PATH;?>/App/Controllers/CatchController/logout.php" class="text-[#f97316] "><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                <?php elseif(!isset($_SESSION['user'])):?>
           <div class="flex items-center space-x-4">
                     <a href="<?php echo BASE_PATH;?>/App/views/Auth/logIn.php" class="text-[#f97316] bg-[#fff] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Login</a>

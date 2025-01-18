@@ -30,7 +30,7 @@
         <div class="w-[30%] flex items-center justify-center p-8 bg-white border-0  shadow-2xl sm:rounded-3xl">
             <div class=" max-w-md">
                 <!-- Sign Up Form -->
-                <form name="userForm" class="space-y-4" action="../../Controllers/catchInfoSignUp.php" method="POST" onsubmit="return validateForm()">
+                <form name="userForm" class="space-y-4" action="../../Controllers/CatchController/catchInfoSignUp.php" method="POST" onsubmit="return validateForm()">
                     <div>
                         <label for='username' class="block text-sm font-medium text-gray-700 mb-1">Full name</label>
                         <input id="username" name="username" type="text" placeholder="Enter your full name" class="w-full p-3 border rounded-lg focus:outline-solid focus:outline-[1rem] focus:outline-[#97b6e7] "/>
