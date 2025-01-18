@@ -13,7 +13,7 @@ class CrudModel{
             $this->conn = $db->connect();
              
     }
-    function checkExintence($table,$column,$row){
+    public function checkExintence($table,$column,$row){
         // Check if the user already exists by email or username
             $query = "SELECT * FROM $table WHERE $column =:row ";
             $stmt = $this->conn->prepare($query);
@@ -21,7 +21,32 @@ class CrudModel{
             $stmt->execute();
             
             // Check if the user exists
-            $existingUserCount= $stmt->fetch(PDO::FETCH_ASSOC);
-             return $existingUserCount;
+            $existingUser= $stmt->fetch(PDO::FETCH_ASSOC);
+             return $existingUser;
     }
+    public function display($table){
+       $query = "SELECT * FROM $table ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            // Check if the user exists
+           return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    }
+
+
+    public function delete($table, $id){
+   
+    $query = "DELETE FROM $table WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':id', $id);
+
+   
+    if($stmt->execute()){
+        return true;  
+    } else {
+        return false; 
+    }
+}
+    
 }
