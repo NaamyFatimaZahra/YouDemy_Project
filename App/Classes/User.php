@@ -1,21 +1,35 @@
 <?php
+namespace App\Classes;
+
 
 abstract class User {
-  
+
+    protected string $id;
     protected string $name;
     protected string $email;
     protected string $password;
+    protected string $role;
+
 
     // Constructor
-    public function __construct( string $name , string $email , string $password ) {
+    public function __construct(string $id, string $name , string $email , string $password ,string $role) {
       
+        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->role = $role;
     }
 
 
-    public function getName(): string {
+    public function getId(): string {
+        return $this->id;
+    }
+
+    public function setId(string $id): void {
+        $this->id = $id;
+    }
+     public function getName(): string {
         return $this->name;
     }
 
@@ -39,13 +53,17 @@ abstract class User {
     public function setPassword(string $password): void {
         $this->password = $password;
     }
+      
+    public function getRole(): string {
+        return $this->role;
+    }
+
+    public function setRole(string $role): void {
+        $this->role = $role;
+    }
  
-     public function login(): void {
-        
-    }
-     public function signUp(): void {
-        
-    }
+    
+
     
 }
 

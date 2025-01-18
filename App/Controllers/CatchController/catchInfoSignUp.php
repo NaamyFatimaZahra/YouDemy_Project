@@ -1,17 +1,16 @@
 <?php
-require_once '../../vendor/autoload.php';
+include_once '../../config/config.php';
+include_once '../../../vendor/autoload.php';
  use App\Controllers\AuthController;
- 
-
+ use App\Classes\Teacher;
+ use App\Classes\Student;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $messages = []; 
-    
     $accountType = $_POST["account_type"];
     if ($accountType !== "teacher" && $accountType !== "student") {
         $messages[] = "Type of account is invalide. can you select 'teacher' ou 'student'.";
     }
-    
     if (empty($_POST['username'])) {
         $messages[] = "User name is obligatoire.";
     }
@@ -30,21 +29,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($messages)) {
         $_SESSION['messagesSignUpErrors'] = $messages;
-        header("Location: ../Views/Auth/signUp.php"); 
+        header("Location: ../../Views/Auth/signUp.php"); 
         exit();
     } else {
-       
+    
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if ($accountType == "student") {
-            
-            // $authController = new AuthController();
-            // $authController->signUpUser($username, $email, $password, 2);
-        } elseif ($accountType == "teacher") {
-            $authController = new AuthController();
-            $authController->signUpUser($username, $email, $password, 3);
+        if ($accountType === "student") { 
+            $userStudent=new Student('',$username, $email, $password,$accountType);
+            $authController = new AuthController($userStudent);
+            $authController->signUpUser();
+        } elseif ($accountType === "teacher") {
+           
+             $userTeacher=new Teacher('',$username, $email, $password,$accountType);
+          
+
+             $authController = new AuthController($userTeacher);
+
+             $authController->signUpUser();
         }
      }
 }
