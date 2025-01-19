@@ -10,13 +10,20 @@ class TagController{
          return $Tags->display('tags');
            
       }
-          public function deleteTag($tagId) {
-        $tagModel = new CrudModel();
-        return $tagModel->delete('tags',$tagId);
+          public function deleteTag($Tag) {
+        $tagId= $Tag->getId();  
+        $delete = new CrudModel();
+        return $delete->delete('tags',$tagId);
+    }
+
+       public function updateTag($Tag) {
+      $tagId= $Tag->getId(); 
+      $tagName= $Tag->getName();
+     
+      $update=new CrudModel();
+       $update->update('tags','name',$tagName,$tagId);
       
 
     }
-
-   
 
 }

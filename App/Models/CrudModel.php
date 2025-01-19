@@ -36,17 +36,30 @@ class CrudModel{
 
     public function delete($table, $id){
    
-    $query = "DELETE FROM $table WHERE id = :id";
-    $stmt = $this->conn->prepare($query);
+        $query = "DELETE FROM $table WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id);
 
    
-    if($stmt->execute()){
-        return true;  
-    } else {
-        return false; 
+        if($stmt->execute()){
+            return true;  
+        } else {
+            return false; 
+        }
     }
-}
+    public function update($table,$column,$nameUpdate, $id){
+       
+      
+        $query = "UPDATE $table SET $column =:UpdatedValue WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':UpdatedValue', $nameUpdate);
+        $stmt->bindParam(':id',$id);
+         $stmt->execute();
+        
+
+    }
+    
+
     
 }
