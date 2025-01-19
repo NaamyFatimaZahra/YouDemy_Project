@@ -8,8 +8,6 @@ use App\Controllers\AdminController;
 // Instancier le contrôleur et récupérer les données
 $controller = new AdminController();
 $Users = $controller->displayUsers();
-
-
 ?>
 
 <!-- Display all tags -->
@@ -34,10 +32,12 @@ unset($_SESSION['messageSuccess']);?>
             <tr class="bg-gray-50">
                 <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">ID</th>
                 <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">Role</th>
-                <th scope="col" class="text-left p-7 text-sm leading-6 font-semibold text-gray-900 capitalize">User Name</th>
+                <th scope="col" class="text-left p- text-sm leading-6 font-semibold text-gray-900 capitalize">User Name</th>
                 <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Email</th>
                             <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Creation Date</th>
+                <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Account Status</th>
                 <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Status</th>
+                <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Update Status</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
@@ -47,10 +47,18 @@ unset($_SESSION['messageSuccess']);?>
             <!-- Example Row 1 -->
             <tr class="bg-white transition-all duration-300 hover:bg-gray-50">
                 <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($User['table1_id']); ?></td>
-                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($User['name']); ?></td>
-                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($User['table2_name']); ?></td>
+                <td class="text-left p-8 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($User['table2_name']); ?></td>
+                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($User['userName']); ?></td>
                 <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($User['email']); ?></td>
                 <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> <?= htmlspecialchars($User['created_at']); ?></td>
+                <td class="text-left p-8 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> 
+                       <p class='px-2 rounded-md text-center py-1
+     <?php if ($User['validation_account'] === 'rejected') echo 'text-red-600 bg-red-100 border border-red-300'; ?>
+    <?php if ($User['validation_account'] === 'pending') echo 'text-yellow-600 bg-yellow-100 border border-yellow-300'; ?>
+    <?php if ($User['validation_account'] === 'accepted') echo 'text-green-600 bg-green-100 border border-green-300'; ?>'>
+     <?= htmlspecialchars($User['validation_account']); ?></p>
+                </td>
+                
                 <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium 
   ">
    <p class='px-2 rounded-md text-center py-1

@@ -696,6 +696,74 @@ video {
   top: 1rem;
 }
 
+.right-\[\] {
+  right: ;
+}
+
+.right-\[-\] {
+  right: -;
+}
+
+.right-\[-4\] {
+  right: -4;
+}
+
+.right-\[-2\] {
+  right: -2;
+}
+
+.top-\[\] {
+  top: ;
+}
+
+.top-\[-\] {
+  top: -;
+}
+
+.top-\[-4\] {
+  top: -4;
+}
+
+.top-\[-4p\] {
+  top: -4p;
+}
+
+.top-\[-4pc\] {
+  top: -4pc;
+}
+
+.top-\[-4px\] {
+  top: -4px;
+}
+
+.top-\[-px\] {
+  top: -px;
+}
+
+.top-\[-8px\] {
+  top: -8px;
+}
+
+.top-\[-8x\] {
+  top: -8x;
+}
+
+.top-\[-89x\] {
+  top: -89x;
+}
+
+.top-\[-x\] {
+  top: -x;
+}
+
+.top-\[-9x\] {
+  top: -9x;
+}
+
+.top-\[-9px\] {
+  top: -9px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1011,10 +1079,6 @@ video {
   width: 100%;
 }
 
-.w-\[2rem\] {
-  width: 2rem;
-}
-
 .max-w-md {
   max-width: 28rem;
 }
@@ -1229,6 +1293,10 @@ video {
   border-radius: 2rem;
 }
 
+.rounded-\[50\%\] {
+  border-radius: 50%;
+}
+
 .rounded-\[70\%\] {
   border-radius: 70%;
 }
@@ -1247,6 +1315,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-\[5\%\] {
+  border-radius: 5%;
 }
 
 .rounded-t-xl {
@@ -1278,6 +1350,10 @@ video {
   border-top-width: 1px;
 }
 
+.border-s {
+  border-inline-start-width: 1px;
+}
+
 .border-solid {
   border-style: solid;
 }
@@ -1302,6 +1378,11 @@ video {
   border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
 }
 
+.border-green-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(134 239 172 / var(--tw-border-opacity, 1));
+}
+
 .border-orange-500 {
   --tw-border-opacity: 1;
   border-color: rgb(249 115 22 / var(--tw-border-opacity, 1));
@@ -1317,19 +1398,9 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
-.border-green-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(134 239 172 / var(--tw-border-opacity, 1));
-}
-
 .border-yellow-300 {
   --tw-border-opacity: 1;
   border-color: rgb(253 224 71 / var(--tw-border-opacity, 1));
-}
-
-.border-\[\#fff\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#0080004a\] {
@@ -1367,6 +1438,11 @@ video {
 
 .bg-\[\#ffffffd9\] {
   background-color: #ffffffd9;
+}
+
+.bg-\[red\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 0 0 / var(--tw-bg-opacity, 1));
 }
 
 .bg-black {
@@ -1459,6 +1535,57 @@ video {
   background-color: rgb(254 249 195 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#fffb00\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 251 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#ff7300\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 115 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#c6681b\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(198 104 27 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#c6681bab\] {
+  background-color: #c6681bab;
+}
+
+.bg-\[\#c6681b95\] {
+  background-color: #c6681b95;
+}
+
+.bg-\[\#c6681b68\] {
+  background-color: #c6681b68;
+}
+
+.bg-\[\#c6681b3b\] {
+  background-color: #c6681b3b;
+}
+
+.bg-\[\#f384293b\] {
+  background-color: #f384293b;
+}
+
+.bg-\[\#fb811e3b\] {
+  background-color: #fb811e3b;
+}
+
+.bg-\[\#fb811e5d\] {
+  background-color: #fb811e5d;
+}
+
+.bg-\[\#fb811e81\] {
+  background-color: #fb811e81;
+}
+
+.bg-\[\#fb811e6e\] {
+  background-color: #fb811e6e;
+}
+
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -1502,12 +1629,17 @@ video {
   padding: 1.5rem;
 }
 
+.p-7 {
+  padding: 1.75rem;
+}
+
 .p-8 {
   padding: 2rem;
 }
 
-.p-7 {
-  padding: 1.75rem;
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .px-2 {
@@ -1590,16 +1722,6 @@ video {
   padding-bottom: 8rem;
 }
 
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -1679,14 +1801,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[4rem\] {
-  font-size: 4rem;
-}
-
-.text-\[2rem\] {
-  font-size: 2rem;
 }
 
 .font-bold {
@@ -1845,22 +1959,6 @@ video {
 .text-yellow-700 {
   --tw-text-opacity: 1;
   color: rgb(161 98 7 / var(--tw-text-opacity, 1));
-}
-
-.text-\[\] {
-  color: ;
-}
-
-.text-\[r\] {
-  color: r;
-}
-
-.text-\[re\] {
-  color: re;
-}
-
-.text-\[rem\] {
-  color: rem;
 }
 
 .shadow-2xl {

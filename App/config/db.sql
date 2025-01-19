@@ -118,7 +118,7 @@ INSERT INTO tags (name) VALUES
 ('SQL');
 
 -- courses
-INSERT INTO courses (title, description, teacher_id, category_id, content, is_archived) VALUES
+INSERT INTO courses (title, description, teacher_id, category_id, content, is_archived,publication_date,update_date,image_url) VALUES
 ('Développeur Full Stack PHP/Vue.js', 'Un cours complet pour maîtriser le développement Full Stack avec PHP et Vue.js.', 2, 1, 'fullstack_course_content.pdf', FALSE),
 ('Designer UX Senior', 'Apprenez les principes avancés du design UX et UI.', 2, 2, 'ux_course_content.pdf', FALSE),
 ('Gestion de Projet Agile', 'Cours pratique sur la gestion de projets selon les méthodologies agiles.', 2, 4, 'agile_course_content.pdf', FALSE),

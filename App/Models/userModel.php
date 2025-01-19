@@ -21,9 +21,9 @@ class UserModel {
            $password=$user->getPassword();     
            $AccountStatus=$user->getAccountStatus();     
            if($user->getRole()=='teacher'){
-            $accountType=3;
-           }elseif($user->getRole()=='student'){
             $accountType=2;
+           }elseif($user->getRole()=='student'){
+            $accountType=3;
            } 
              $existingUser=new CrudModel();
              

@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +45,14 @@
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Admin/TagsPage.php"class="hover:text-[#d97706] transition">tags</a>
                     </li>
+                    <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/CategoriesPage.php"class="hover:text-[#d97706] transition">categories</a>
+                    </li>
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Admin/AllUsers.php"class="hover:text-[#d97706] transition">Users</a>
                     </li> 
                       <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/TeacherRequest.php"class="hover:text-[#d97706] transition">Teachers Requests</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/TeacherRequest.php"class="hover:text-[#d97706] transition relative">Teachers Requests </a>
                     </li>               
                     <?php elseif(  $_SESSION['user']['role_id'] == '2'):?>
                      <li>
@@ -60,9 +64,7 @@
                     <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Admin/AllCourses.php" class="hover:text-[#d97706] transition">All Courses</a>
                     </li>
-                    <li>
-                        <a href="<?php echo BASE_PATH;?>/Public/index.php" class="hover:text-[#d97706] transition">About Us</a>
-                    </li>
+                   
                 </ul>
                
                 <!-- Auth Buttons -->

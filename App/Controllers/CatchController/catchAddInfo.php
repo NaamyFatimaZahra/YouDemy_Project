@@ -11,12 +11,11 @@ use App\Classes\Category;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      $typePost=$_POST['typePost'];
-    $id = $_POST['id'] ;
-    $nameUpdated = $_POST['update_name'] ;
-    if( $typePost=$_POST['typePost']==='tags'){
+    $nameValue = $_POST['Add_names'] ;
+    if( $typePost==='tags'){
      $TagObject=new Tag($id,$nameUpdated);
      $checkIfTagExist=new CrudModel();
-     $rowTag= $checkIfTagExist->checkExintence('tags','id',$id);
+     $rowTag= $checkIfTagExist->checkExintence('tags','id',$nameAdd);
 
     if( $rowTag['name']==$nameUpdated){
     $_SESSION['messageNotSuccess']="This Tag already exist.";
@@ -34,21 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
     }
   } 
-}elseif( $typePost=$_POST['typePost']==='category'){
-  
+}elseif( $typePost==='category'){
+     
       $checkIfTagExist=new CrudModel();
+     $rowCategory= $checkIfTagExist->checkExintence('categories','name',$nameValue);
 
-     $rowCategory= $checkIfTagExist->checkExintence('categories','id',$id);
-
-    if( $rowCategory['name']==$nameUpdated){
-      
+    if($rowCategory!==false){
+    
     $_SESSION['messageNotSuccess']="This Category already exist.";
     header("Location:".BASE_PATH."/App/Views/admin/CategoriesPage.php");
    }else{
-      $CategoryObject=new Category($id,$nameUpdated);
+      $CategoryObject=new Category(0,$nameValue);
+     
      $controller = new CategoryController();
-    $update= $controller->updateCategory($CategoryObject);
-     if( $update===true){
+    $AddValue= $controller->addCategory($CategoryObject);
+     if( $AddValue===true){
     $_SESSION['messageSuccess']="UPDATED STATUS successfully.";
       header("Location:".BASE_PATH."/App/Views/admin/CategoriesPage.php");  // Change this to your actual tags page URL
     exit;

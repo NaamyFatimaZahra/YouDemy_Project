@@ -2,10 +2,10 @@
 include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
-use App\Controllers\TagController;
+use App\Controllers\CategoryController;
 // Instancier le contrôleur et récupérer les données
-$controller = new TagController();
-$Tags = $controller->displayTags();
+$controller = new CategoryController();
+$Categories = $controller->displayCategory();
 
 ?>
 
@@ -22,35 +22,35 @@ unset($_SESSION['messageNotSuccess']);?>
 <?php endif;
 unset($_SESSION['messageSuccess']);?>
           <h1 class="text-4xl font-bold mb-10  text-yellow-700">
-            All Tags          
+            All Categoies          
             </h1>
     <table class="w-[60%] rounded-xl border border-gray-200">
         <thead>
             <tr class="bg-gray-50">
                 <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">ID</th>
-                <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Tag Name</th>
+                <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Category Name</th>
                 <th scope="col" class="text-left p-5 text-sm leading-6 font-semibold text-gray-900 capitalize">Creation Date</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
-             <?php foreach ($Tags as $Tag): ?>
+             <?php foreach ($Categories as $Category): ?>
             <!-- Example Row 1 -->
             <tr class="bg-white transition-all duration-300 hover:bg-gray-50">
-                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($Tag['id']); ?></td>
-                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($Tag['name']); ?></td>
-                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> <?= htmlspecialchars($Tag['creation_date']); ?></td>
+                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($Category['id']); ?></td>
+                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">  <?= htmlspecialchars($Category['name']); ?></td>
+                <td class="text-left p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> <?= htmlspecialchars($Category['creation_date']); ?></td>
                 <td class="p-5">
                     <div class="flex items-center gap-2">
                        
                          <!-- Delete Button (Form that sends the tag_id) -->
                         <form action="../../Controllers/CatchController/catchDelete.php" method="POST">
-                            <input type="hidden" name="id" value="<?= htmlspecialchars($Tag['id']); ?>" />
-                            <input type="hidden" name="typePost" value="tags" />
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($Category['id']); ?>" />
+                            <input type="hidden" name="typePost" value="category" />
                             <button type="submit" class="p-2 rounded-full hover:bg-red-100 transition-all duration-300 flex items-center">
                                 <i class="fas fa-trash-alt text-red-600"></i>
                             </button>
                         </form>
-                          <button onclick="openUpdateTagModal('<?= $Tag['name'] ?>','<?= $Tag['id'] ?>')" class="p-2 rounded-full hover:bg-indigo-100 transition-all duration-300 flex items-center">
+                          <button onclick="openUpdateTagModal('<?= $Category['name'] ?>','<?= $Category['id'] ?>')" class="p-2 rounded-full hover:bg-indigo-100 transition-all duration-300 flex items-center">
                             <i class="fas fa-edit text-indigo-500"></i>
                         </button>
                        
@@ -61,14 +61,14 @@ unset($_SESSION['messageSuccess']);?>
         </tbody>
     </table>
 
-    <!-- Add Tag Button -->
+    <!-- Add Category$Category Button -->
     <div class="fixed bottom-10 right-10">
         <button onclick="openAddTagModal()" class="px-4 py-2 bg-[#f97316] text-white rounded-full hover:bg-[#f97416d5] transition-all duration-300 shadow-lg flex items-center gap-2">
-            <i class="fas fa-plus"></i> Add Tag
+            <i class="fas fa-plus"></i> Add Category
         </button>
     </div>
 
-    <!-- Modal for Adding Tags -->
+    <!-- Modal for Adding  -->
     <div id="addTagModal" class="fixed  inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
         <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
             <div class="flex justify-between items-center mb-4">
@@ -77,11 +77,11 @@ unset($_SESSION['messageSuccess']);?>
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form method="POST">
-                <input type="hidden" name="typePost" value="tags" />
+            <form method="POST" action="../../Controllers/CatchController/catchAddInfo.php" >
+                <input type="hidden" name="typePost" value="category" />
                 <input type="text" 
-                       name="tag_names" 
-                       placeholder="Entrez les tags séparés par des virgules" 
+                       name="Add_names" 
+                       placeholder="Add category " 
                        class="w-full border rounded p-2 mb-2"
                        required/>
                 <div class="flex justify-end space-x-2">
@@ -91,7 +91,7 @@ unset($_SESSION['messageSuccess']);?>
                         Annuler
                     </button>
                     <button type="submit" 
-                            name="add_tags"
+                            name="add"
                             class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                         Ajouter
                     </button>
@@ -99,7 +99,7 @@ unset($_SESSION['messageSuccess']);?>
             </form>
         </div>
     </div>
-       <!-- Modal for update Tags -->
+       <!-- Modal for update  -->
     <div id="updateTagModal" class="fixed  inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
         <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
             <div class="flex justify-between items-center mb-4">
@@ -109,7 +109,8 @@ unset($_SESSION['messageSuccess']);?>
                 </button>
             </div>
             <form action="../../Controllers/CatchController/catchUpdate.php" method="POST">
-                <input type="hidden" name="typePost" value="tags" />
+                <input type="hidden" name="typePost" value="category" />
+                
                 <input id="inputId" type="hidden" name="id" value="" />
                 <input type="text" 
                  id="update_input"
@@ -125,7 +126,7 @@ unset($_SESSION['messageSuccess']);?>
                     <button type="submit" 
                            
                             class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                        Ajouter
+                        Apdate
                     </button>
                 </div>
             </form>
