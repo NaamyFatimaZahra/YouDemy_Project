@@ -12,15 +12,17 @@ class AdminController extends DisplayAbstactClass{
       }
        public function displayUsers():array{
          $Tags= new CrudModel;
-         return $Tags->display('users');
+         return $Tags->displayTwoTable('users','roles','role_id');
         
       }
-       public function deleteUsers($user):bool{
-        $id= $user->getId();
-         
-         $users= new CrudModel;
-        return $users->delete('users',$id);
+        public function updateStatusUsers($user):bool{
+        $nameUpdate=$user->getStatus();
+         $userId=$user->getId();
         
+         $userUpdate= new CrudModel;
+         return $userUpdate-> update('users','status',$nameUpdate, $userId);
+       
       }
+       
 }
 

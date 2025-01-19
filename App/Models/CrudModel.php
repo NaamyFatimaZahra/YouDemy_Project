@@ -55,9 +55,19 @@ class CrudModel{
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':UpdatedValue', $nameUpdate);
         $stmt->bindParam(':id',$id);
-         $stmt->execute();
+        return  $stmt->execute();
         
 
+    }
+
+    public function displayTwoTable($table1,$table2,$column2){
+       $query = "SELECT *,$table2.name as table2_name,$table1.id as table1_id FROM $table1  
+INNER JOIN $table2 ON $table1.$column2=$table2.id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            // Check if the user exists
+           return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
     }
     
 

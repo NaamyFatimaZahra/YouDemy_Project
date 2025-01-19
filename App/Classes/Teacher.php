@@ -5,8 +5,8 @@ use App\Classes\User;
 class Teacher extends User {
     private string $speciality;
 
-    public function __construct(string $id='',string $name, string $email, string $password,string $role,string $AccountStatus='', string $speciality='') {
-        parent::__construct($id,$name, $email, $password, $role,$AccountStatus);
+    public function __construct(string $id='',string $name, string $email, string $password,string $role,string $AccountStatus='',string $status='', string $speciality='') {
+        parent::__construct($id,$name, $email, $password, $role,$AccountStatus,$status);
         $this->speciality = $speciality;
     }
 

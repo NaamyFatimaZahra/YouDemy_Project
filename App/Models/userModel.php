@@ -88,15 +88,14 @@ class UserModel {
          switch ($userRow['role_id']) {
                 case 1: // Example: Admin
                 header("Location: " .BASE_PATH."/App/views/admin/Dashboard.php");
-                
                 break;
                 case 2: // Example: Student
-                header("Location: " .BASE_PATH."/App/views/Student/index.php");
+                header("Location: " .BASE_PATH."/App/views/Teacher/Dashboard.php");
                 break;
                 case 3: // Example: Teacher
-                    header("Location: " .BASE_PATH."/App/views/Teacher/Dashboard.php");
-                break;
-           
+                 header("Location: " .BASE_PATH."/App/views/Student/index.php");
+                 break;
+                        
         }
         exit(); 
                 } else{
@@ -108,6 +107,7 @@ class UserModel {
             }
        
     }
+
 
 
     }

@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $controller = new TagController();
     $deleted=$controller->deleteTag($TagObject);
     if($deleted===true){
+       $_SESSION['messageSuccess']="deleted successfully.";
       header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");  // Change this to your actual tags page URL
     exit;
     }else{

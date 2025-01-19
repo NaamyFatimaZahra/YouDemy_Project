@@ -28,11 +28,11 @@
                 <?php if(isset($_SESSION['user'])):?>
                       <?php if( $_SESSION['user']['role_id'] == '1'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/Dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/Dashboard.php" class="hover:text-[#d97706] transition">dashboard</a>
                     </li>               
-                    <?php elseif( $_SESSION['user']['role_id'] == '3'):?>
+                    <?php elseif( $_SESSION['user']['role_id'] == '2'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/Dashboard.php"lass="hover:text-[#d97706] transition">dashboard</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/Dashboard.php" class="hover:text-[#d97706] transition">dashboard</a>
                     </li>
                  <?php endif ?>   
                  <?php endif?> 
@@ -46,8 +46,11 @@
                     </li>
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Admin/AllUsers.php"class="hover:text-[#d97706] transition">Users</a>
-                    </li>                
-                    <?php elseif(  $_SESSION['user']['role_id'] == '3'):?>
+                    </li> 
+                      <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/TeacherRequest.php"class="hover:text-[#d97706] transition">Teachers Requests</a>
+                    </li>               
+                    <?php elseif(  $_SESSION['user']['role_id'] == '2'):?>
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/MyCourses.php"class="hover:text-[#d97706] transition">My courses</a>
                     </li>
@@ -71,7 +74,7 @@
                     <a href="<?php echo BASE_PATH;?>/App/views/Auth/signUp.php" class="text-[#fff] bg-[#f97316] px-7 py-[.4rem] rounded-[2rem] transition duration-300 shadow-md hover:shadow-lg font-medium">Sign Up</a>
                 </div>
                  <?php endif;?>
-
+                
                 
             </div>
         </nav>

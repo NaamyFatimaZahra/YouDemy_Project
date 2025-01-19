@@ -19,12 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['messageNotSuccess']="this tag already exist.";
     header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");
    }else{
-    $update=new TagController();
-     $update->updateTag($TagObject);
-    $_SESSION['messageSuccess']="added successfully.";
-    header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");
-   }
-  
-} 
+    $controller=new TagController();
+    $update= $controller->updateTag($TagObject);
+     if( $update===true){
+    $_SESSION['messageSuccess']="UPDATED STATUS successfully.";
+      header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");  // Change this to your actual tags page URL
+    exit;
+    }else{
+      $_SESSION['messageNotSuccess']="OOPS! NOT UPDATED STATUS.";
+       header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");  // Change this to your actual tags page URL
+    exit;
+    }
+  } 
+}
 
    

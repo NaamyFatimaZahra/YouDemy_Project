@@ -21,8 +21,8 @@ class TagController{
       $tagName= $Tag->getName();
      
       $update=new CrudModel();
-       $update->update('tags','name',$tagName,$tagId);
-      
+      return $update->update('tags','name',$tagName,$tagId);
+       
 
     }
 
