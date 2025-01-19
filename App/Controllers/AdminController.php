@@ -7,7 +7,7 @@ use App\Controllers\DisplayAbstactClass;
 class AdminController extends DisplayAbstactClass{
       public function displayCourses():array{
          $courses= new CrudModel;
-         return $courses->display('courses');
+         return $courses->displayTreeTable('courses','users','teacher_id','categories','category_id');
         
       }
        public function displayUsers():array{

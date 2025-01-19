@@ -60,7 +60,7 @@ class CrudModel{
     }
 
     public function displayTwoTable($table1,$table2,$column2,$condition1,$condition2){
-       $query = "SELECT *,$table2.name as table2_name,$table1.name userName,$table1.id as table1_id FROM $table1  
+       $query = "SELECT *,$table2.name as table2_name,$table1.name as userName,$table1.id as table1_id FROM $table1  
 INNER JOIN $table2 ON $table1.$column2=$table2.id
 Where $condition1 AND $condition2 ";
             $stmt = $this->conn->prepare($query);
@@ -87,6 +87,21 @@ Where $condition1 AND $condition2 ";
     $stmt->bindParam(':ValueToAdd', $valueToAdd);
     return $stmt->execute();
 }
+
+
+
+   public function displayTreeTable($table1,$table2,$column2,$table3,$column3){
+       $query = "SELECT *,$table2.name as table2_name,$table3.name table3_name,$table2.name table2_id FROM $table1
+INNER JOIN $table2 ON $table1.$column2=$table2.id
+INNER JOIN $table3 ON $table1.$column3=$table3.id
+";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            // Check if the user exists
+           return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    }
+
 
 
     
