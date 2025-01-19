@@ -8,8 +8,8 @@ class Student extends User {
     private string $phoneNumber;
     private string $image;
 
-    public function __construct(string $id='',string $name, string $email, string $password,string $role, string $linkGithub='', string $linkLinkedin='', string $phoneNumber='', string $image='') {
-       parent::__construct($id,$name, $email, $password, $role);
+    public function __construct(string $id='',string $name, string $email, string $password,string $role,string $AccountStatus='', string $linkGithub='', string $linkLinkedin='', string $phoneNumber='', string $image='') {
+       parent::__construct($id,$name, $email, $password, $role,$AccountStatus);
         $this->linkGithub = $linkGithub;
         $this->linkLinkedin = $linkLinkedin;
         $this->phoneNumber = $phoneNumber;

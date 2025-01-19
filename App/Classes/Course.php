@@ -8,7 +8,7 @@ class Course {
     private string $title;
     private string $description;
     private string $context;
-    private DateTime $publicationDateTime;
+    private string $publicationDateTime;
     private bool $archived;
 
     public function getId(): int {
@@ -43,11 +43,11 @@ class Course {
         $this->context = $context;
     }
 
-    public function getPublicationDateTime(): DateTime {
+    public function getPublicationDateTime(): string {
         return $this->publicationDateTime;
     }
 
-    public function setPublicationDateTime(DateTime $publicationDateTime): void {
+    public function setPublicationDateTime(string $publicationDateTime): void {
         $this->publicationDateTime = $publicationDateTime;
     }
 

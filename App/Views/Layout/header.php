@@ -42,8 +42,11 @@
                       <?php if(isset($_SESSION['user'])):?>
                          <?php if( $_SESSION['user']['role_id'] == '1'):?>
                      <li>
-                        <a href="<?php echo BASE_PATH;?>/App/Views/admin/TagsPage.php"class="hover:text-[#d97706] transition">tags</a>
-                    </li>               
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/TagsPage.php"class="hover:text-[#d97706] transition">tags</a>
+                    </li>
+                     <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/AllUsers.php"class="hover:text-[#d97706] transition">Users</a>
+                    </li>                
                     <?php elseif(  $_SESSION['user']['role_id'] == '3'):?>
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/MyCourses.php"class="hover:text-[#d97706] transition">My courses</a>
@@ -52,7 +55,7 @@
                  <?php endif?> 
                  
                     <li>
-                        <a href="<?php echo BASE_PATH;?>/Public/index.php" class="hover:text-[#d97706] transition">All Courses</a>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Admin/AllCourses.php" class="hover:text-[#d97706] transition">All Courses</a>
                     </li>
                     <li>
                         <a href="<?php echo BASE_PATH;?>/Public/index.php" class="hover:text-[#d97706] transition">About Us</a>

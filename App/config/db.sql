@@ -20,7 +20,7 @@ CREATE TABLE users (
     image VARCHAR(255) DEFAULT NULL,
     speciality VARCHAR(255),
     status ENUM('activated', 'suspend', 'deleted') DEFAULT 'activated',
-    validation_account ENUM('pending', 'accepted', 'rejected') DEFAULT 'accepted',
+    validation_account ENUM('pending', 'accepted','rejected') DEFAULT 'accepted',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE

@@ -4,7 +4,23 @@ include_once '../Layout/header.php';
 
 // Vérification si l'utilisateur est connecté et a le rôle de professeur
 if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != '3') {
-    header('Location: ../Auth/logIn.php');
+    header("Location: ".BASE_PATH. "/App/Views/Auth/logIn.php");
+    exit();
+}elseif($_SESSION['user']['AccountStatus']==='pending'){
+    $_SESSION['message']='PLEASE WAIT OUR TEAM WILL ACTIVATE YOUR ACCOUNT SOON!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}elseif($_SESSION['user']['AccountStatus']==='rejected'){
+    $_SESSION['message']='OOPS? IT LOOKS LIKE YOUR REQEUST WAS REJECTED!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}elseif($_SESSION['user']['status']==='deleted'){
+    $_SESSION['message']='OOPS? IT LOOKS LIKE YOUR ACCOUNT IS DELETED!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}elseif($_SESSION['user']['status']==='suspend'){
+    $_SESSION['message']='OOPS? IT LOOKS LIKE YOUR ACCOUNT IS suspended!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
     exit();
 }
 

@@ -2,10 +2,10 @@
 include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
-use App\Controllers\TagController;
-// Instancier le contrôleur et récupérer les données
-$controller = new TagController();
-$Tags = $controller->displayTags();
+// use App\Controllers\TagController;
+// // Instancier le contrôleur et récupérer les données
+// $controller = new TagController();
+// $Tags = $controller->displayTags();
 
 ?>
 

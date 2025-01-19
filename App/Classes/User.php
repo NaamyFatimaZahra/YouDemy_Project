@@ -9,16 +9,18 @@ abstract class User {
     protected string $email;
     protected string $password;
     protected string $role;
+    protected string $AccountStatus;
 
 
     // Constructor
-    public function __construct(string $id, string $name , string $email , string $password ,string $role) {
+    public function __construct(string $id, string $name , string $email , string $password ,string $role,string $AccountStatus='') {
       
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
+        $this->AccountStatus = $AccountStatus;
     }
 
 
@@ -63,7 +65,13 @@ abstract class User {
     }
  
     
+  public function getAccountStatus(): string {
+        return $this->AccountStatus;
+    }
 
+    public function setAccountStatus(string $AccountStatus): void {
+        $this->AccountStatus = $AccountStatus;
+    }
     
 }
 
