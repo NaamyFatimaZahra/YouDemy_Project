@@ -2,52 +2,89 @@
 include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
-// use App\Controllers\CategoryController;
+use App\Controllers\CategoryController;
 
 ?>
-    
-    <article class="max-w-2xl px-6 py-24 mx-auto space-y-12">
-        <div class="w-full mx-auto space-y-4 text-center">
-            <h1 class="text-4xl font-bold leading-tight md:text-5xl">Interdum et malesuada fames ac ante ipsum primis in faucibus?</h1>
-            <p class="text-sm dark:text-gray-600">by
-                <a rel="noopener noreferrer" href="#" target="_blank" class="underline dark:text-violet-600">
-                    <span itemprop="name">Leroy Jenkins</span>
-                </a> on
-                <time datetime="2021-02-12 15:34:18-0200">Feb 12th 2021</time>
+
+<main class="min-h-[100vh] my-[9rem]">
+       <?php if (isset($_SESSION['messageNotSuccess'])): ?>
+		 <div id="messageNotSuccess" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['messageNotSuccess'] ?></div>
+<?php endif;
+unset($_SESSION['messageNotSuccess']);?>
+
+<!-- SUCCESS MESSAGE -->
+  <?php if (isset($_SESSION['messageSuccess'])): ?>
+		 <div id="messageSuccess" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-[#0080004a] text-[green] border-solid border-[1px] border-[green]"> <?= $_SESSION['messageSuccess'] ?></div>
+<?php endif;
+unset($_SESSION['messageSuccess']);?>
+    <!-- Course Content -->
+    <div class=" w-[80%] m-auto  mb-10">
+       
+            <h1 class="text-4xl text-center capitalize  font-extrabold text-[#d97706] mb-[3rem]"><?=$_SESSION['details_course']['title']?></h1>
+            <div class="relative mb-6">
+                <iframe 
+                    src="<?=$_SESSION['details_course']['content']?>" 
+                    class="w-[80%] m-auto h-[60vh] rounded-lg border border-yellow-500" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+           
+        
+    </div>
+
+    <!-- Course Details -->
+   
+        <div class="relative bg-[#201d70] rounded-lg w-[80%] m-auto shadow-lg p-6">
+            <h2 class="text-3xl font-bold text-[#d97706] mb-4">Course Details</h2>
+             <p class="text-gray-300 text-lg mb-4">
+                <?=$_SESSION['details_course']['description']?>
             </p>
-        </div>
-        <div class="dark:text-gray-800">
-            <p>Insert the actual text content here...</p>
-        </div>
-        <div class="pt-12 border-t dark:border-gray-300">
-            <div class="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
-                <img src="https://source.unsplash.com/75x75/?portrait" alt="" class="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-300">
-                <div class="flex flex-col">
-                    <h4 class="text-lg font-semibold">Leroy Jenkins</h4>
-                    <p class="dark:text-gray-600">Sed non nibh iaculis, posuere diam vitae, consectetur neque. Integer velit ligula, semper sed nisl in, cursus commodo elit. Pellentesque sit amet mi luctus ligula euismod lobortis ultricies et nibh.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="font-bold text-gray-300">Teacher:</h4>
+                    <p class="text-gray-400"><?=$_SESSION['details_course']['name']?></p>
                 </div>
+                <div>
+                    <h4 class="font-bold text-gray-300">Tags</h4>
+                    <ul class="flex flex-wrap gap-2">
+                        <?php 
+                        
+                        foreach ($_SESSION['Tags'] as $tag): 
+                        ?>
+                            <li class="px-2 py-1 mt-2 bg-yellow-500 text-gray-900 rounded-full text-sm">
+                                <?= htmlspecialchars($tag['name']) ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-300">publication Date</h4>
+                    <p class="text-gray-400 capitalize"><?=$_SESSION['details_course']['publication_date']?></p>
+                </div>
+               
+
             </div>
-            <div class="flex justify-center pt-4 space-x-4 align-center">
-                <!-- GitHub Icon -->
-                <a rel="noopener noreferrer" href="#" aria-label="GitHub" class="p-2 rounded-md dark:text-gray-800 hover:dark:text-violet-600">
-                    <i class="fab fa-github w-4 h-4"></i>
-                </a>
-                <!-- Dribbble Icon -->
-                <a rel="noopener noreferrer" href="#" aria-label="Dribbble" class="p-2 rounded-md dark:text-gray-800 hover:dark:text-violet-600">
-                    <i class="fab fa-dribbble w-4 h-4"></i>
-                </a>
-                <!-- Twitter Icon -->
-                <a rel="noopener noreferrer" href="#" aria-label="Twitter" class="p-2 rounded-md dark:text-gray-800 hover:dark:text-violet-600">
-                    <i class="fab fa-twitter w-4 h-4"></i>
-                </a>
-                <!-- Email Icon -->
-                <a rel="noopener noreferrer" href="#" aria-label="Email" class="p-2 rounded-md dark:text-gray-800 hover:dark:text-violet-600">
-                    <i class="fas fa-envelope w-4 h-4"></i>
-                </a>
-            </div>
-          
+
+<form class='absolute bottom-4 right-4' method="POST" action="../../Controllers/CatchController/catchArchivedCourse.php">
+    <select 
+        name="archived" 
+        class="py-3 px-4 text-center text-white  border-[#d97706] border-solid border-[1px] rounded-lg text-sm bg-[#d97706] outline-none" 
+       onchange="this.form.submit()" >
+        <option value="" >SELECT</option>
+        <option value="Archived" >Archived</option>
+        <option value="NOT Archived" >NOT Archived</option>
+    </select>
+    <input type="hidden" name="course_id" value="<?= $_SESSION['details_course']['idCourse'] ?>">
+</form>
         </div>
-    </article>
+   
+</main>
+ <script>
+         setTimeout(function() {
+            document.getElementById('messageSuccess').style.display = 'none';
+            document.getElementById('messageNotSuccess').style.display = 'none';
+        }, 4000);
+    </script>
     <?php 
 include_once '../Layout/footer.php';
 ?>

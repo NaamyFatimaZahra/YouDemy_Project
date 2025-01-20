@@ -21,10 +21,10 @@
             <div class="flex items-center justify-between gap-[7rem]">
                 <!-- Navigation Links -->
                 <ul class="hidden md:flex items-center font-semibold space-x-[4rem] capitalize text-[#f97316]">
-                
                     <li>
                         <a href="<?php echo BASE_PATH;?>/Public/index.php"lass="hover:text-[#d97706] transition">Home</a>
                     </li>
+                  
                 
                 <?php if(isset($_SESSION['user'])):?>
                       <?php if( $_SESSION['user']['role_id'] == '1'):?>
@@ -35,8 +35,8 @@
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/Dashboard.php" class="hover:text-[#d97706] transition">dashboard</a>
                     </li>
-                 <?php endif ?>   
-                 <?php endif?> 
+                 <?php endif; ?>   
+                 <?php endif;?> 
 
 
 

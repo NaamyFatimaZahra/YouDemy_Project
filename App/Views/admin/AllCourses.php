@@ -17,10 +17,24 @@ $courses = $controller->displayCourses();
             </h1>
         <div class="flex justify-center  items-center flex-wrap gap-[3rem]">
   <?php foreach ($courses as $course): ?>
-  <div class="bg-white shadow-md border w-[20rem] h-[28rem] border-[#d97706] rounded-lg overflow-hidden">
+  <?php if($course['is_archived']==0): ?>
+     <div class="bg-white shadow-md border w-[20rem] h-[28rem] border-[#d97706] rounded-lg overflow-hidden">
         <div>
-            <img class="rounded-t-lg w-full h-[15rem]" src="<?= htmlspecialchars($course['image_url']); ?>" alt="">
-        </div>
+        <div class="relative rounded-t-lg w-full h-[15rem]">
+    <!-- The iframe remains in place -->
+    <iframe 
+        src="<?= htmlspecialchars($course['content']); ?>" 
+        class="absolute inset-0 w-full h-full rounded-t-lg"
+        allowfullscreen>
+    </iframe>
+    
+    <!-- Overlay blocks interaction -->
+    <div 
+        class="absolute inset-0 bg-black opacity-50 pointer-events-auto rounded-t-lg"
+        title="Video is disabled">
+    </div>
+</div>
+            </div>
         <div class="p-5">
             <div href="h-[5rem] bg-[red]">
                 <h5 class="font-bold text-2xl  tracking-tight mb-2 text-[#595959]"><?= htmlspecialchars($course['title']); ?></h5>
@@ -38,6 +52,8 @@ $courses = $controller->displayCourses();
                 </div>
         </div>
     </div>
+            <?php endif; ?>
+ 
             <?php endforeach; ?>
         </div>
          

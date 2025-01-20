@@ -2,16 +2,14 @@
 namespace App\Controllers;
 include_once '../../config/config.php';
 include_once '../../../vendor/autoload.php';
+use App\Models\CourseModel;
 use App\Models\CrudModel;
 use App\Controllers\DisplayAbstactClass;
-class AdminController extends DisplayAbstactClass{
+class CourseController{
       public function displayDetailsCourse($course):array{
          $course_id=$course->getId();
-          $details= new CrudModel;
-         return $courses->displayTreeTable('courses','users','teacher_id','categories','category_id');
-        
-        
-        
+          $details= new CourseModel;
+         return $details->displayDetailsCourse($course_id);
       }
        public function addCourse():bool{
   
@@ -20,8 +18,11 @@ class AdminController extends DisplayAbstactClass{
         public function updateCourse():bool{
      
       }
-       public function deleteCourse():array{
-       
+       public function ArchivedCourse($course):bool{
+          $course_id=$course->getId();
+          $course_isArchived=$course->getIsArchived();
+          $details= new CrudModel;
+          return $details->update('courses','is_archived', $course_isArchived, $course_id);
       }
 
      

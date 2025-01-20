@@ -32,8 +32,12 @@ class TagController{
       $update=new CrudModel();
       // return $update->addTags('tags','name',$tagName,$tagId);
       return $update->addTags($tagName);
-       
-
     }
+     public function displayTagsOfCourse($id):array{
+       
+        $Tags= new CrudModel;
+         return $Tags->displayTags($id);
+           
+      }
 
 }
