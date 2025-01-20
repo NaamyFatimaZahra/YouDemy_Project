@@ -19,15 +19,16 @@ class UserModel {
            $email=$user->getEmail();     
            $username=$user->getName();     
            $password=$user->getPassword();     
+           $AccountStatus=$user->getAccountStatus();     
            if($user->getRole()=='teacher'){
-            $accountType=3;
-           }elseif($user->getRole()=='student'){
             $accountType=2;
+           }elseif($user->getRole()=='student'){
+            $accountType=3;
            } 
              $existingUser=new CrudModel();
              
             if ($existingUser->checkExintence('Users','email', $email)) {
-                echo 'hy';
+               
             // If user exists, store the error message in the session
             $_SESSION['error'] = "A user with this email or username already exists.";
              header("Location: " .BASE_PATH."/App/Views/Auth/signUp.php");
@@ -35,8 +36,8 @@ class UserModel {
         }else{
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            $query = "INSERT INTO Users (`name`, email, password, role_id) 
-                      VALUES (:username, :email, :password, :accountType)";
+            $query = "INSERT INTO Users (`name`, email, password, role_id,validation_account) 
+                      VALUES (:username, :email, :password, :accountType,:AccountStatus)";
             $stmt = $this->conn->prepare($query);
 
             // Bind the parameters to the SQL query
@@ -44,6 +45,7 @@ class UserModel {
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $hashed_password);
             $stmt->bindParam(':accountType', $accountType);
+            $stmt->bindParam(':AccountStatus', $AccountStatus);
 
             // Execute the query to insert the data into the database
              return $stmt->execute();
@@ -80,19 +82,20 @@ class UserModel {
                         $_SESSION['user'] = [
                     'id' => $userRow['id'],
                     'role_id' => $userRow['role_id'],
-                    'name' => $userRow['name']];
+                    'name' => $userRow['name'],
+                    'status' => $userRow['status'],
+                'AccountStatus' => $userRow['validation_account']];
          switch ($userRow['role_id']) {
                 case 1: // Example: Admin
                 header("Location: " .BASE_PATH."/App/views/admin/Dashboard.php");
-                
                 break;
                 case 2: // Example: Student
-                header("Location: " .BASE_PATH."/App/views/Student/index.php");
+                header("Location: " .BASE_PATH."/App/views/Teacher/Dashboard.php");
                 break;
                 case 3: // Example: Teacher
-                    header("Location: " .BASE_PATH."/App/views/Teacher/Dashboard.php");
-                break;
-           
+                 header("Location: " .BASE_PATH."/App/views/Student/index.php");
+                 break;
+                        
         }
         exit(); 
                 } else{
@@ -104,6 +107,7 @@ class UserModel {
             }
        
     }
+
 
 
     }

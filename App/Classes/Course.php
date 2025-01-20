@@ -2,15 +2,35 @@
 
 namespace App\Classes;
 
-
 class Course {
     private int $id;
     private string $title;
     private string $description;
-    private string $context;
-    private DateTime $publicationDateTime;
-    private bool $archived;
+    private string $content;
+    private string $publicationDateTime;
+    private string $updateDateTime;
+    private bool $isArchived;
 
+ 
+    public function __construct(
+        int $id = 0,
+        string $title = '',
+        string $description = '',
+        string $content = '',
+        string $publicationDateTime = '',
+        string $updateDateTime = '',
+        bool $isArchived = false
+    ) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->content = $content;
+        $this->publicationDateTime = $publicationDateTime;
+        $this->updateDateTime = $updateDateTime;
+        $this->isArchived = $isArchived;
+    }
+
+    
     public function getId(): int {
         return $this->id;
     }
@@ -19,6 +39,7 @@ class Course {
         $this->id = $id;
     }
 
+  
     public function getTitle(): string {
         return $this->title;
     }
@@ -27,6 +48,7 @@ class Course {
         $this->title = $title;
     }
 
+ 
     public function getDescription(): string {
         return $this->description;
     }
@@ -35,27 +57,38 @@ class Course {
         $this->description = $description;
     }
 
-    public function getContext(): string {
-        return $this->context;
+  
+    public function getContent(): string {
+        return $this->content;
     }
 
-    public function setContext(string $context): void {
-        $this->context = $context;
+    public function setContent(string $content): void {
+        $this->content = $content;
     }
 
-    public function getPublicationDateTime(): DateTime {
+    
+    public function getPublicationDateTime(): string {
         return $this->publicationDateTime;
     }
 
-    public function setPublicationDateTime(DateTime $publicationDateTime): void {
+    public function setPublicationDateTime(string $publicationDateTime): void {
         $this->publicationDateTime = $publicationDateTime;
     }
 
-    public function isArchived(): bool {
-        return $this->archived;
+    public function getUpdateDateTime(): string {
+        return $this->updateDateTime;
     }
 
-    public function setArchived(bool $archived): void {
-        $this->archived = $archived;
+    public function setUpdateDateTime(string $updateDateTime): void {
+        $this->updateDateTime = $updateDateTime;
+    }
+
+
+    public function getIsArchived(): bool {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): void {
+        $this->isArchived = $isArchived;
     }
 }

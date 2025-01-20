@@ -38,16 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $_POST['password'];
 
         if ($accountType === "student") { 
-            $userStudent=new Student('',$username, $email, $password,$accountType);
+            $userStudent=new Student('',$username, $email, $password,$accountType,"accepted");
             $authController = new AuthController($userStudent);
             $authController->signUpUser();
         } elseif ($accountType === "teacher") {
            
-             $userTeacher=new Teacher('',$username, $email, $password,$accountType);
-          
-
+             $userTeacher=new Teacher('',$username, $email, $password,$accountType,'pending');
              $authController = new AuthController($userTeacher);
-
              $authController->signUpUser();
         }
      }

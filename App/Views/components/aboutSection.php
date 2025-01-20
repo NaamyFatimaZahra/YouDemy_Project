@@ -8,10 +8,10 @@
                 <span class="text-[#201d70]">?</span>
             </h2>
             <p class="text-gray-600 text-justify  mx-auto leading-relaxed pt-[2rem]">
-Youdemy is an innovative platform designed to bridge the gap between students and quality educational resources. Unlike traditional methods where students often struggle to find reliable PDFs
-, Youdemy ensures they have access to curated content uploaded directly by experienced and reputable educators. This platform empowers students by providing well-structured resources created by
- professionals who are experts in their fields. With Youdemy, students no longer need to waste time searching; they can focus on learning from high-quality materials tailored to their academic needs.            </p>
-        </section>
+
+Youdemy is an innovative platform designed to bridge the gap between students and quality educational resources. Unlike traditional methods where students often struggle to find reliable video tutorials,
+ Youdemy ensures they have access to curated content uploaded directly by experienced and reputable educators. This platform empowers students by providing well-structured video lessons created by professionals
+  who are experts in their fields. With Youdemy, students no longer need to waste time searching; they can focus on learning through high-quality videos tailored to their academic needs. </section>
  
 
         <!-- User Types Section -->

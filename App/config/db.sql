@@ -20,7 +20,7 @@ CREATE TABLE users (
     image VARCHAR(255) DEFAULT NULL,
     speciality VARCHAR(255),
     status ENUM('activated', 'suspend', 'deleted') DEFAULT 'activated',
-    validation_account ENUM('pending', 'accepted', 'rejected') DEFAULT 'accepted',
+    validation_account ENUM('pending', 'accepted','rejected') DEFAULT 'accepted',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
@@ -40,7 +40,7 @@ CREATE TABLE tags (
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table des offres d'emploi
+-- Table des course
 CREATE TABLE courses (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
@@ -48,6 +48,7 @@ CREATE TABLE courses (
     teacher_id INT NOT NULL,
     category_id INT NOT NULL,
     content VARCHAR(100),
+    image_url VARCHAR(100),
     is_archived BOOLEAN DEFAULT FALSE,
     publication_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -55,7 +56,7 @@ CREATE TABLE courses (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
--- Table de liaison entre les offres d'emploi et les tags
+-- Table de liaison entre les course et les tags
 CREATE TABLE courses_tags (
     course_id INT NOT NULL,
     tag_id INT NOT NULL,
@@ -118,12 +119,13 @@ INSERT INTO tags (name) VALUES
 ('SQL');
 
 -- courses
-INSERT INTO courses (title, description, teacher_id, category_id, content, is_archived) VALUES
-('Développeur Full Stack PHP/Vue.js', 'Un cours complet pour maîtriser le développement Full Stack avec PHP et Vue.js.', 2, 1, 'fullstack_course_content.pdf', FALSE),
-('Designer UX Senior', 'Apprenez les principes avancés du design UX et UI.', 2, 2, 'ux_course_content.pdf', FALSE),
-('Gestion de Projet Agile', 'Cours pratique sur la gestion de projets selon les méthodologies agiles.', 2, 4, 'agile_course_content.pdf', FALSE),
-('Introduction à Docker et Kubernetes', 'Déployez vos applications avec Docker et Kubernetes.', 2, 5, 'docker_course_content.pdf', FALSE),
-('Initiation à la Science des Données', 'Analyse des données et introduction au Machine Learning.', 2, 6, 'datascience_course_content.pdf', FALSE);
+INSERT INTO courses (title, description, teacher_id, category_id, content, is_archived, publication_date, update_date, image_url) VALUES
+('Introduction à la Programmation', 'Un cours pour apprendre les bases de la programmation en Python.', 1, 2, 'Ce cours couvre les variables, les boucles, les fonctions et plus encore.', FALSE, '2025-01-01', '2025-01-15', 'https://example.com/images/programming.jpg'),
+('Marketing Digital pour Débutants', 'Découvrez les bases du marketing digital, y compris le SEO et les médias sociaux.', 2, 3, 'Apprenez à optimiser votre site pour les moteurs de recherche et à gérer des campagnes publicitaires.', FALSE, '2025-01-10', '2025-01-18', 'https://example.com/images/marketing.jpg'),
+('Les Fondamentaux de la Photographie', 'Un cours pour maîtriser les bases de la photographie, de la composition à l’éclairage.', 3, 4, 'Ce cours vous aidera à comprendre comment capturer de superbes photos avec votre appareil.', FALSE, '2025-01-05', '2025-01-12', 'https://example.com/images/photography.jpg'),
+('Introduction à la Gestion de Projet', 'Un guide pour apprendre les bases de la gestion de projets avec les meilleures pratiques.', 4, 5, 'Ce cours inclut des outils comme Gantt et Trello, et des méthodologies comme Agile.', FALSE, '2025-01-08', '2025-01-14', 'https://example.com/images/project-management.jpg'),
+('Apprendre la Cuisine Française', 'Découvrez les secrets des plats traditionnels français, des entrées aux desserts.', 5, 6, 'Ce cours inclut des recettes détaillées, des techniques de cuisson et des astuces pour réussir vos repas.', FALSE, '2025-01-12', '2025-01-19', 'https://example.com/images/french-cooking.jpg');
+
 
 -- Associations entre courses et tags
 INSERT INTO courses_tags (course_id, tag_id) VALUES

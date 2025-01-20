@@ -1,12 +1,12 @@
 <?php
 namespace App\Classes;
-include_once "../../vendor/autoload.php";
+include_once "../../../vendor/autoload.php";
 
 class Tag{
       private int $id;
       private string $name;
        
-      public function __construct($id='',$name) {
+      public function __construct(int $id=NULL,$name='') {
         $this->id = $id;
         $this->name = $name;
       }

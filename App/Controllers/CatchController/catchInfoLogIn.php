@@ -42,21 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                exit();
             }else{
          if ( $userRow['role_id']===1) { 
-           
             $userStudent=new Admin($userRow['id'],$userRow['name'], $email, $password,'admin');
-            $authController = new AuthController($userStudent);
-            $authController->logInUser();
-        } elseif ($userRow['role_id'] === 3) {
-           
+        } elseif ($userRow['role_id'] === 2) {
              $userTeacher=new Teacher($userRow['id'],$userRow['name'], $email, $password,'teacher');
-             $authController = new AuthController($userTeacher);
-             $authController->logInUser();
-        } elseif ( $userRow['role_id']===2) { 
-           
+        } elseif ( $userRow['role_id']===3) { 
             $userStudent=new Student($userRow['id'],$userRow['name'], $email, $password,'student');
-            $authController = new AuthController($userStudent);
-            $authController->logInUser();
         }
+          $authController = new AuthController($userStudent);
+            $authController->logInUser();
       
      }
 }

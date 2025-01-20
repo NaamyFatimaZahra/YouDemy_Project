@@ -37,9 +37,9 @@ class AuthController{
 
     public function logOut(){
    session_unset();
-   session_destroy();
+   session_destroy(); 
    header("Location:" .BASE_PATH."/Public/index.php");
-   exit;
+   exit();
 
     }
 }
