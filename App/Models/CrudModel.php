@@ -71,7 +71,6 @@ Where $condition1 AND $condition2 ";
     }
 
      public function Count($table,$condition){
-        // Check if the user already exists by email or username
             $query = "SELECT count(*) FROM $table WHERE $condition";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -91,7 +90,7 @@ Where $condition1 AND $condition2 ";
 
 
    public function displayTreeTable($table1,$table2,$column2,$table3,$column3){
-       $query = "SELECT *,$table2.name as table2_name,$table3.name table3_name,$table2.name table2_id FROM $table1
+       $query = "SELECT *,$table2.name as table2_name,$table3.name as table3_name,$table1.id as table1_id FROM $table1
 INNER JOIN $table2 ON $table1.$column2=$table2.id
 INNER JOIN $table3 ON $table1.$column3=$table3.id
 ";
@@ -101,6 +100,41 @@ INNER JOIN $table3 ON $table1.$column3=$table3.id
            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         
     }
+
+
+ public function displayDetailsCourse($table1,$table2,$column2,$table3,$column3){
+       $query = "SELECT *,$table2.name as table2_name,$table3.name as table3_name,$table1.id as table1_id FROM $table1
+INNER JOIN $table2 ON $table1.$column2=$table2.id
+INNER JOIN $table3 ON $table1.$column3=$table3.id
+";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            // Check if the user exists
+           return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    }
+
+
+    public function addTags($name)
+    {
+        $tagsArray = array_map('trim', explode(',', $name));
+
+
+        $query = "INSERT INTO tags (name) VALUES (:name);";
+        $stmt = $this->conn->prepare($query);
+
+
+        foreach ($tagsArray as $tag) {
+            if (!empty($tag)) {
+                $stmt->bindParam(":name", $tag);
+                $stmt->execute();
+            }
+        }
+        return true;
+     
+
+    }
+
 
 
 

@@ -13,17 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      $typePost=$_POST['typePost'];
     $nameValue = $_POST['Add_names'] ;
     if( $typePost==='tags'){
-     $TagObject=new Tag($id,$nameUpdated);
-     $checkIfTagExist=new CrudModel();
-     $rowTag= $checkIfTagExist->checkExintence('tags','id',$nameAdd);
-
-    if( $rowTag['name']==$nameUpdated){
-    $_SESSION['messageNotSuccess']="This Tag already exist.";
+       
+    if(!$nameValue){
+    $_SESSION['messageNotSuccess']="Empty Input.";
     header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");
    }else{
+     $TagObject=new Tag(0,$nameValue);
     $controller=new TagController();
-    $update= $controller->updateTag($TagObject);
-     if( $update===true){
+    $add= $controller->add($TagObject);
+     if($add===true){
     $_SESSION['messageSuccess']="UPDATED STATUS successfully.";
       header("Location:".BASE_PATH."/App/Views/admin/TagsPage.php");  // Change this to your actual tags page URL
     exit;

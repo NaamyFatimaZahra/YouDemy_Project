@@ -21,8 +21,6 @@ class CategoryController{
      
       $update=new CrudModel();
       return $update->update('Categories','name',$CategoryName,$CategoryId);
-       
-
     }
 
 

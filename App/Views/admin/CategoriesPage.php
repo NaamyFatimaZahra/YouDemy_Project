@@ -2,6 +2,10 @@
 include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
+if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != '1') {
+    header('Location: ../Auth/logIn.php');
+    exit();
+}
 use App\Controllers\CategoryController;
 // Instancier le contrôleur et récupérer les données
 $controller = new CategoryController();

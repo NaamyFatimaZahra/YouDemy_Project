@@ -3,12 +3,23 @@ namespace App\Controllers;
 include_once '../../config/config.php';
 include_once '../../../vendor/autoload.php';
 use App\Models\CrudModel;
+use App\Models\StatistiqueModel;
 
 class Statistiques {
-      public function Counter($table,$condition):int{
-          $controller=new CrudModel;
-         return $controller->Count($table,$condition);
-      }
+        public function total($table):int{
+        $controller=new StatistiqueModel();
+         return $controller->CountTotal($table);  
+      }  
+       public function topCourseID(){
+        $controller=new StatistiqueModel();
+         return $controller->topCourse();  
+      } 
+        public function treeTopTeachers():array{
+        $controller=new StatistiqueModel();
+         return $controller->treeTop();  
+      } 
        
+
+        
 }
 

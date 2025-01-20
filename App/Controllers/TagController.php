@@ -25,5 +25,15 @@ class TagController{
        
 
     }
+     public function add($Tag) {
+      $tagId= $Tag->getId(); 
+      $tagName= $Tag->getName();
+     
+      $update=new CrudModel();
+      // return $update->addTags('tags','name',$tagName,$tagId);
+      return $update->addTags($tagName);
+       
+
+    }
 
 }

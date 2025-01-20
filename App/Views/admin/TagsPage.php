@@ -2,6 +2,10 @@
 include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
+if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != '1') {
+    header('Location: ../Auth/logIn.php');
+    exit();
+}
 use App\Controllers\TagController;
 // Instancier le contrôleur et récupérer les données
 $controller = new TagController();
@@ -70,20 +74,29 @@ unset($_SESSION['messageSuccess']);?>
 
     <!-- Modal for Adding Tags -->
     <div id="addTagModal" class="fixed  inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4 relative">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold">Ajouter des tags</h2>
                 <button onclick="closeAddTagModal()" class="text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form method="POST">
+            <!-- AddTagModal -->
+             <!-- <button onclick="AddTagModal(this.value)" class='absolute top-[45%] translate-y-[-50%] right-7'>
+                    <i class="fa-solid fa-plus border-solid border-[1px] text-white border-[#f97316] py-3 px-4  bg-[#f9741646] rounded-[50%] hover:bg-[#f97316]"></i>
+                </button> -->
+            <form method="POST" action="../../Controllers/CatchController/catchAddInfo.php">
                 <input type="hidden" name="typePost" value="tags" />
-                <input type="text" 
-                       name="tag_names" 
+                
+                <div class="flex  gap-3">
+                    <input type="text" 
+                       name="Add_names" 
                        placeholder="Entrez les tags séparés par des virgules" 
-                       class="w-full border rounded p-2 mb-2"
+                       class="w-[85%] border rounded p-2 mb-2 outline-[#f97316] outline-[1px]"
                        required/>
+                      
+                </div>
+                    <p class="text-sm text-gray-500 mb-4">Exemple : JavaScript, Python, React, Node.js</p>
                 <div class="flex justify-end space-x-2">
                     <button type="button" 
                             onclick="closeAddTagModal()" 
@@ -92,7 +105,7 @@ unset($_SESSION['messageSuccess']);?>
                     </button>
                     <button type="submit" 
                             name="add_tags"
-                            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                            class="px-4 py-2 bg-[#f9741646] text-white rounded hover:bg-[#f97316] ">
                         Ajouter
                     </button>
                 </div>
@@ -141,6 +154,12 @@ unset($_SESSION['messageSuccess']);?>
         
 
 
+    }
+
+
+
+    function AddTagModal(value){
+console.log(value);
     }
 
     function closeAddTagModal() {
