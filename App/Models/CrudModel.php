@@ -122,8 +122,6 @@ INNER JOIN $table3 ON $table1.$column3=$table3.id
 
         $query = "INSERT INTO tags (name) VALUES (:name);";
         $stmt = $this->conn->prepare($query);
-
-
         foreach ($tagsArray as $tag) {
             if (!empty($tag)) {
                 $stmt->bindParam(":name", $tag);
@@ -141,7 +139,7 @@ INNER JOIN $table3 ON $table1.$column3=$table3.id
     public function displayTags($id):array
     {
 
-                $query = "SELECT * FROM `courses_tags` 
+$query = "SELECT * FROM `courses_tags` 
 INNER JOIN tags
 ON tags.id=courses_tags.tag_id
 where course_id=:id";

@@ -21,12 +21,18 @@ unset($_SESSION['messageSuccess']);?>
     <div class=" w-[80%] m-auto  mb-10">
        
             <h1 class="text-4xl text-center capitalize  font-extrabold text-[#d97706] mb-[3rem]"><?=$_SESSION['details_course']['title']?></h1>
-            <div class="relative mb-6">
+            <div class="relative w-[80%] m-auto h-[60vh] overflow-hidden">
                 <iframe 
                     src="<?=$_SESSION['details_course']['content']?>" 
-                    class="w-[80%] m-auto h-[60vh] rounded-lg border border-yellow-500" 
+                    class="w-full m-auto h-full rounded-lg border border-yellow-500" 
                     allowfullscreen>
                 </iframe>
+           <?php if(empty($_SESSION['user'])): ?>
+                 <div 
+        class="absolute inset-0 bg-black opacity-50 pointer-events-auto rounded-t-lg"
+        title="Video is disabled">
+                </div>
+            <?php endif?>
             </div>
            
         
@@ -64,7 +70,7 @@ unset($_SESSION['messageSuccess']);?>
                
 
             </div>
-
+<?php if(isset($_SESSION['user'])&&($_SESSION['user']['role_id']===1||$_SESSION['user']['role_id']===2)): ?>
 <form class='absolute bottom-4 right-4' method="POST" action="../../Controllers/CatchController/catchArchivedCourse.php">
     <select 
         name="archived" 
@@ -76,6 +82,7 @@ unset($_SESSION['messageSuccess']);?>
     </select>
     <input type="hidden" name="course_id" value="<?= $_SESSION['details_course']['idCourse'] ?>">
 </form>
+  <?php endif?>
         </div>
    
 </main>

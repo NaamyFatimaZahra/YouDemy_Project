@@ -31,25 +31,16 @@ $controllerTags=new TagController();
 $Tags=$controllerTags->displayTags();
 ?>
         <section id="add-course" class="bg-white mt-[6rem] rounded-lg min-h-[100vh] shadow-lg p-6 mb-8 w-[80%] m-auto ">
-       <?php if (isset($_SESSION['messageSuccess'])): ?>
-		 <div id="messageSuccess" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-[#0080004a] text-[green] border-solid border-[1px] border-[green]"> <?= $_SESSION['messageSuccess'] ?></div>
-        <?php endif;
-        unset($_SESSION['messageSuccess']);?>
+       
 
-          <?php if (isset($_SESSION['messageNotSuccess'])): ?>
-           
-             <?php foreach ($_SESSION['messageNotSuccess'] as $message): ?>
-               		 <div id="messageNotSuccess" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $message ?></div>
-            <?php endforeach; ?> 
-            <?php endif;
-                     unset($_SESSION['messageNotSuccess']);?>
-         
-
-
-
-
-
-
+     <?php if (isset($_SESSION['messageNotSuccess'])): ?>
+    <?php foreach ($_SESSION['messageNotSuccess'] as $message): ?>
+        <div id="messageNotSuccess" class="absolute right-4 top-20 z-30 p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300">
+            <?= htmlspecialchars($message) ?>
+        </div>
+    <?php endforeach; ?>
+    <?php unset($_SESSION['messageNotSuccess']); ?>
+<?php endif; ?>
 
 
 <!-- SUCCESS MESSAGE -->
@@ -57,7 +48,7 @@ $Tags=$controllerTags->displayTags();
 		 <div id="messageSuccess" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-[#0080004a] text-[green] border-solid border-[1px] border-[green]"> <?= $_SESSION['messageSuccess'] ?></div>
 <?php endif;
 unset($_SESSION['messageSuccess']);?>
-            <form  action="../../Controllers/CatchController/catchAddCourse.php" >
+            <form  action="../../Controllers/CatchController/catchAddCourse.php" method='POST' >
                
 
                 

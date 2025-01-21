@@ -11,13 +11,33 @@ class CourseController{
           $details= new CourseModel;
          return $details->displayDetailsCourse($course_id);
       }
-       public function createCourse():bool{
-         
-        
+
+
+      
+       public function createCourse($course):bool{
+        $courseModel = new CourseModel();
+        $courseId = $courseModel->addNewCourse([
+            'title' => $course['title'],
+            'description' => $course['description'],
+            'content' => $course['content'],
+            'category_id' => $course['category_id'],
+            'teacher_id' => $course['teacher_id']
+        ]);
+
+        if (!$courseId) {
+            return false; 
+        }
+        $courseTagModel = new CourseModel();
+        foreach ($course['tags'] as $tagId) {
+            $courseTagModel->addNewTag([
+                'course_id' => $courseId,
+                'tag_id' => $tagId
+            ]);
+        }
+
+        return true; 
       }
-        public function updateCourse():bool{
-     
-      }
+       
        public function ArchivedCourse($course):bool{
           $course_id=$course->getId();
           $course_isArchived=$course->getIsArchived();
