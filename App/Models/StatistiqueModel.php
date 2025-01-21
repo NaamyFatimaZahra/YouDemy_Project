@@ -44,6 +44,13 @@ class StatistiqueModel{
     return $treeTop;
   
 }
+  public function CountTotalForSpecificTeacher($table,$condition1,$condition2){
+            $query = "SELECT count(*) FROM $table where $condition1=$condition2";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+             $rowCount = $stmt->fetchColumn();
+              return $rowCount;
+    } 
     
 
 

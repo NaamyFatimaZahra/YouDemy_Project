@@ -12,8 +12,6 @@ $controller = new TagController();
 $Tags = $controller->displayTags();
 
 ?>
-
-<!-- Display all tags -->
 <section class="w-[100%] min-h-[100vh] py-[8rem] flex flex-col justify-center items-center">
     <?php if (isset($_SESSION['messageNotSuccess'])): ?>
 		 <div id="messageNotSuccess" class=" absolute right-4 top-20 z-30   p-4 rounded-md bg-red-100 text-red-700 border-solid border-[1px] border-red-300"> <?= $_SESSION['messageNotSuccess'] ?></div>

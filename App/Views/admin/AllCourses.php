@@ -21,14 +21,14 @@ $courses = $controller->displayCourses();
      <div class="bg-white shadow-md border w-[20rem] h-[28rem] border-[#d97706] rounded-lg overflow-hidden">
         <div>
         <div class="relative rounded-t-lg w-full h-[15rem]">
-    <!-- The iframe remains in place -->
+   
     <iframe 
         src="<?= htmlspecialchars($course['content']); ?>" 
         class="absolute inset-0 w-full h-full rounded-t-lg"
         allowfullscreen>
     </iframe>
     
-    <!-- Overlay blocks interaction -->
+   
     <div 
         class="absolute inset-0 bg-black opacity-50 pointer-events-auto rounded-t-lg"
         title="Video is disabled">
