@@ -93,7 +93,7 @@ class UserModel {
                 header("Location: " .BASE_PATH."/App/views/Teacher/Dashboard.php");
                 break;
                 case 3: // Example: Teacher
-                 header("Location: " .BASE_PATH."/App/views/Student/index.php");
+                 header("Location: " .BASE_PATH."/Public/index.php");
                  break;
                         
         }

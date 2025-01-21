@@ -11,7 +11,6 @@ class CrudModel{
             // Attempt to create the database connection
             $db = new Database();
             $this->conn = $db->connect();
-             
     }
     public function checkExintence($table,$column,$row){
         // Check if the user already exists by email or username
@@ -96,7 +95,7 @@ INNER JOIN $table3 ON $table1.$column3=$table3.id
 ";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
-            // Check if the user exists
+           
            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         
     }
