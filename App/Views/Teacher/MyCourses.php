@@ -2,77 +2,93 @@
 include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
-use App\Controllers\AdminController;
-// Instancier le contrôleur et récupérer les données
-// $controller = new AdminController();
-// $AllCourse = $controller->displayCourses();
+use App\Controllers\TeacherController;
+
+if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != '2') {
+    header("Location: ".BASE_PATH. "/App/Views/Auth/logIn.php");
+    exit();
+}elseif($_SESSION['user']['AccountStatus']==='pending'){
+    $_SESSION['message']='PLEASE WAIT OUR TEAM WILL ACTIVATE YOUR ACCOUNT SOON!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}elseif($_SESSION['user']['AccountStatus']==='rejected'){
+    $_SESSION['message']='OOPS? IT LOOKS LIKE YOUR REQEUST WAS REJECTED!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}elseif($_SESSION['user']['status']==='deleted'){
+    $_SESSION['message']='OOPS? IT LOOKS LIKE YOUR ACCOUNT IS DELETED!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}elseif($_SESSION['user']['status']==='suspend'){
+    $_SESSION['message']='OOPS? IT LOOKS LIKE YOUR ACCOUNT IS suspended!';
+    header("Location:".BASE_PATH. "/App/Views/Errors/203.php");
+    exit();
+}
+
+
+$controller = new TeacherController();
+$courses = $controller->displayCourses();
 
 ?>
 
 <!-- Display all tags -->
-<section class="w-[100%] min-h-[100vh] py-[8rem] flex justify-center items-center">
-   
+<section class="w-[80%] min-h-[100vh] m-auto py-[8rem] ">
     
-             
-          
-           <div class="max-w-sm rounded overflow-hidden shadow-lg">
-  <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
-  <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-    <p class="text-gray-700 text-base">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-    </p>
-  </div>
-  <div class="px-6 pt-4 pb-2">
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-  </div>
-
-         <div class="fixed bottom-10 right-10">
-        <button onclick="openAddTagModal()" class="px-4 py-2 bg-[#f97316] text-white rounded-full hover:bg-[#f97416d5] transition-all duration-300 shadow-lg flex items-center gap-2">
-            <i class="fas fa-plus"></i> Add Course
-        </button>
+          <h1 class="text-4xl text-center font-bold mb-10  text-yellow-700">
+            All COURSES          
+            </h1>
+        <div class="flex justify-center  items-center flex-wrap gap-[3rem]">
+  <?php foreach ($courses as $course): ?>
+  <?php if($course['is_archived']==0): ?>
+     <div class="bg-white shadow-md border w-[20rem] h-[28rem] border-[#d97706] rounded-lg overflow-hidden">
+        <div>
+        <div class="relative rounded-t-lg w-full h-[15rem]">
+    <!-- The iframe remains in place -->
+    <iframe 
+        src="<?= htmlspecialchars($course['content']); ?>" 
+        class="absolute inset-0 w-full h-full rounded-t-lg"
+        allowfullscreen>
+    </iframe>
+    
+    <!-- Overlay blocks interaction -->
+    <div 
+        class="absolute inset-0 bg-black opacity-50 pointer-events-auto rounded-t-lg"
+        title="Video is disabled">
     </div>
-
+</div>
+            </div>
+        <div class="p-5">
+            <div href="h-[5rem] bg-[red]">
+                <h5 class="font-bold text-2xl  tracking-tight mb-2 text-[#595959]"><?= htmlspecialchars($course['title']); ?></h5>
+           </div>
+          
+                <p class="font-normal text-gray-700 mb-3 dark:text-gray-400">Teacher:<?= htmlspecialchars($course['table2_name']); ?></p>
+           
+           
+          <div class="flex justify-between mt-7">
+            <form  action="../../Controllers/CatchController/catchToDisplay.php" method="POST">
+                <input class='hidden' type="text" name="id_course" value="<?= htmlspecialchars($course['table1_id']); ?>">
+                <input class="text-white bg-[#d97706] hover:bg-[#d97706b9] font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center " type="submit" value=" more &#10230;">
+            </form>
+             <p class="text-white border-solid border-[1px] border-[#d97706b9] bg-[#d977064d] px-2 py-1 rounded-lg"><?= htmlspecialchars($course['table3_name']); ?></p>
+                </div>
+        </div>
+    </div>
+            <?php endif; ?>
+ 
+            <?php endforeach; ?>
+        </div>
+         
+         <div class="fixed bottom-10 right-10">
+        <a href='../../../App/Views/Teacher/FormAddCourse.php' class="px-4 py-2 bg-[#f97316] text-white rounded-full hover:bg-[#f97416d5] transition-all duration-300 shadow-lg flex items-center gap-2">
+            <i class="fas fa-plus"></i> Add Course
+        </a>
+    </div>
+  
+   
+  
 </section>
 
-<script>
-    // add function
-    function openAddTagModal() {
-        document.getElementById('addTagModal').classList.remove('hidden');
-         document.getElementById('addTagModal').classList.add('flex');
-        
-
-
-    }
-
-    function closeAddTagModal() {
-        document.getElementById('addTagModal').classList.remove('flex');
-        document.getElementById('addTagModal').classList.add('hidden');
-    }
-
-
-  // edit function
-function openUpdateTagModal(tagName,id) {
-        
-        document.getElementById('updateTagModal').classList.remove('hidden');
-         document.getElementById('updateTagModal').classList.add('flex');
-         document.getElementById('update_input').value=tagName;
-         document.getElementById('inputId').value=id;
-
-    }
-
-    function closeUpdateTagModal() {
-        document.getElementById('updateTagModal').classList.remove('flex');
-        document.getElementById('updateTagModal').classList.add('hidden');
-    }
-     setTimeout(function() {
-            document.getElementById('messageSuccess').style.display = 'none';
-            document.getElementById('messageNotSuccess').style.display = 'none';
-        }, 4000);
-
-</script>
 
 <?php 
 include_once '../Layout/footer.php';

@@ -19,6 +19,10 @@ class Statistiques {
          return $controller->treeTop();  
       } 
        
+         public function totalforSpecificTeacher($table,$condition1,$condition2):int{
+        $controller=new StatistiqueModel();
+         return $controller->CountTotalForSpecificTeacher($table,$condition1,$condition2);  
+      } 
 
         
 }

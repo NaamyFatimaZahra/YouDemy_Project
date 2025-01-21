@@ -11,8 +11,8 @@ class CourseController{
           $details= new CourseModel;
          return $details->displayDetailsCourse($course_id);
       }
-       public function addCourse():bool{
-  
+       public function createCourse():bool{
+         
         
       }
         public function updateCourse():bool{
