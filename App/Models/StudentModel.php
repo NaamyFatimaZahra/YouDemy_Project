@@ -41,6 +41,23 @@ class StudentModel{
             $existingUser= $stmt->fetch(PDO::FETCH_ASSOC);
              return $existingUser;
     }
+
+
+
+     public function ADDEnrollment($user,$course){
+      
+        //  echo $user,$course;
+            $query = "INSERT INTO `enrollment`( `course_id`, `student_id`) 
+            VALUES (:id_course,:id_user)";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id_course', $course);
+            $stmt->bindParam(':id_user', $user);
+           
+            return $stmt->execute();
+          
+        
+    }
+
   
 
 

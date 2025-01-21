@@ -95,7 +95,7 @@ INNER JOIN $table3 ON $table1.$column3=$table3.id
 ";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
-            // Check if the user exists
+           
            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         
     }

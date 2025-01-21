@@ -7,7 +7,11 @@ use App\Controllers\StudentController;
   
    $controller=new StudentController();
    $isEnrolled=$controller->checkEnrollmentStudent($_SESSION['user']['id'], $_SESSION['details_course']['idCourse']);
-   
+  
+   if (!isset($_SESSION['user'])) {
+    header("Location: ".BASE_PATH. "/App/Views/Auth/logIn.php");
+    exit();
+}
    
 ?>
 
@@ -32,7 +36,7 @@ unset($_SESSION['messageSuccess']);?>
                     class="w-full m-auto h-full rounded-lg border border-yellow-500" 
                     allowfullscreen>
                 </iframe>
-           <?php if(empty($_SESSION['user']) || $isEnrolled==false): ?>
+           <?php if(empty($_SESSION['user']) || $isEnrolled==false || $_SESSION['user']['id']!==$_SESSION['details_course']['teacher_id'] ): ?>
                  <div 
         class="absolute inset-0 bg-black opacity-50 pointer-events-auto rounded-t-lg"
         title="Video is disabled">
@@ -76,6 +80,8 @@ unset($_SESSION['messageSuccess']);?>
                
 
             </div>
+
+            <!-- archiving -->
 <?php if(isset($_SESSION['user'])&&($_SESSION['user']['role_id']===1||$_SESSION['user']['role_id']===2)): ?>
 <form class='absolute bottom-4 right-4' method="POST" action="../../Controllers/CatchController/catchArchivedCourse.php">
     <select 
@@ -89,6 +95,23 @@ unset($_SESSION['messageSuccess']);?>
     <input type="hidden" name="course_id" value="<?= $_SESSION['details_course']['idCourse'] ?>">
 </form>
   <?php endif?>
+         
+          <!-- enrollment -->
+<?php if(isset($_SESSION['user']) && $_SESSION['user']['role_id']===3): ?>
+<?php if($isEnrolled==false):?>
+    <form class='absolute bottom-4  right-4' method="POST" action="../../Controllers/CatchController/catchEnrollment.php">
+    <input type="hidden" name="course_id" value="<?= $_SESSION['details_course']['idCourse']?>">
+    <input  type="submit" name='typePoste' value="enrolled" class="py-3 cursor-pointer px-4 font-bold w-[7rem] text-center text-white  border-[#d97706] border-solid border-[1px] rounded-lg text-sm bg-[#d97706] outline-none">
+  </form>
+  <?php elseif($isEnrolled==true):?>
+     <form class='absolute bottom-4  right-4' method="POST" action="../../Controllers/CatchController/catchEnrollment.php">
+    <input type="hidden" name="course_id" value="<?= $_SESSION['details_course']['idCourse']?>">
+    <input  type="submit" name='typePoste' value="cancel" class="py-3 cursor-pointer px-4 font-bold w-[7rem] text-center text-white  border-[#d97706] border-solid border-[1px] rounded-lg text-sm bg-[#d97706] outline-none">
+  </form>
+  <?php endif?>
+  <?php endif?>
+  
+
         </div>
    
 </main>

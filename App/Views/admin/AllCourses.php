@@ -4,14 +4,31 @@ include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
 use App\Controllers\AdminController;
 
+
 $controller = new AdminController();
-$courses = $controller->displayCourses();
+$courses = $controller->displayCourses($searchValue);
 
 ?>
 
 <!-- Display all tags -->
-<section class="w-[80%] min-h-[100vh] m-auto py-[8rem] ">
-    
+<section class="w-[80%] relative min-h-[100vh] m-auto py-[8rem] ">
+
+ <form action="../../Controllers/CatchController/catchSearch.php" method="POST" class="absolute right-7 top-[8rem] flex justify-center">
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Search courses..." 
+            class="w-[50%] px-4 py-2 border border-[#d97706] rounded-lg focus:outline-none focus:border-[#d97706b9]"
+            value="<?= htmlspecialchars($_GET['search'] ?? ''); ?>"
+        >
+        <button 
+            type="submit" 
+            class="ml-2 px-4 py-2 bg-[#d97706] text-white rounded-lg hover:bg-[#d97706b9]"
+        >
+            Search
+        </button>
+    </form>
+          
           <h1 class="text-4xl text-center font-bold mb-10  text-yellow-700">
             All COURSES          
             </h1>
@@ -40,7 +57,7 @@ $courses = $controller->displayCourses();
                 <h5 class="font-bold text-2xl  tracking-tight mb-2 text-[#595959]"><?= htmlspecialchars($course['title']); ?></h5>
            </div>
           
-                <p class="font-normal text-gray-700 mb-3 dark:text-gray-400">Teacher:<?= htmlspecialchars($course['table2_name']); ?></p>
+                <p class="font-normal text-gray-700 mb-3 dark:text-gray-400 appercase">Teacher:<?= htmlspecialchars($course['table2_name']); ?></p>
            
            
           <div class="flex justify-between mt-7">
