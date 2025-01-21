@@ -58,6 +58,10 @@
                      <li>
                         <a href="<?php echo BASE_PATH;?>/App/Views/Teacher/MyCourses.php"class="hover:text-[#d97706] transition">My courses</a>
                     </li>
+                    <?php elseif(  $_SESSION['user']['role_id'] == '3'):?>
+                     <li>
+                        <a href="<?php echo BASE_PATH;?>/App/Views/Student/MyCourses.php"class="hover:text-[#d97706] transition">My courses</a>
+                    </li>
                  <?php endif?>
                  <?php endif?> 
                  

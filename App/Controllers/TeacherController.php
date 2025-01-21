@@ -10,33 +10,7 @@ class TeacherController extends DisplayAbstactClass{
          return $courses->displayAllCourse('courses','users','teacher_id','categories','category_id',$_SESSION['user']['id']);
         
       }
-    //    public function displayUsers():array{
-    //      $Tags= new CrudModel;
-    //      return $Tags->displayTwoTable('users','roles','role_id','1=1','1=1');
-        
-    //   }
-    //     public function updateStatusUsers($user):bool{
-    //     $nameUpdate=$user->getStatus();
-    //      $userId=$user->getId();
-        
-    //      $userUpdate= new CrudModel;
-    //      return $userUpdate-> update('users','status',$nameUpdate, $userId);
-       
-    //   }
-    //    public function displayUsersSuspend():array{
-    //      $Tags= new CrudModel;
-    //      return $Tags->displayTwoTable('users','roles','role_id','role_id=2','validation_account="pending" OR validation_account="rejected"');
-        
-    //   }
-
-    //    public function validateTeachers($user):bool{
-    //     $accountStatus=$user->getAccountStatus();
-    //      $userId=$user->getId();
-        
-    //      $userUpdate= new CrudModel;
-    //      return $userUpdate-> update('users','validation_account',$accountStatus, $userId);
-       
-    //   }
+   
        
 }
 

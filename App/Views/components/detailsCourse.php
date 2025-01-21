@@ -3,7 +3,12 @@ include_once '../../config/config.php';
 include_once '../Layout/header.php';
 include_once '../../../vendor/autoload.php';
 use App\Controllers\CategoryController;
-
+use App\Controllers\StudentController;
+  
+   $controller=new StudentController();
+   $isEnrolled=$controller->checkEnrollmentStudent($_SESSION['user']['id'], $_SESSION['details_course']['idCourse']);
+   
+   
 ?>
 
 <main class="min-h-[100vh] my-[9rem]">
@@ -27,12 +32,13 @@ unset($_SESSION['messageSuccess']);?>
                     class="w-full m-auto h-full rounded-lg border border-yellow-500" 
                     allowfullscreen>
                 </iframe>
-           <?php if(empty($_SESSION['user'])): ?>
+           <?php if(empty($_SESSION['user']) || $isEnrolled==false): ?>
                  <div 
         class="absolute inset-0 bg-black opacity-50 pointer-events-auto rounded-t-lg"
         title="Video is disabled">
                 </div>
             <?php endif?>
+
             </div>
            
         
